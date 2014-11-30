@@ -9,6 +9,7 @@ function formatGame(game){
 	} else {
 		game.gametime = new Date();
 	}
+	game.username = 'actual';
 	return game;
 }
 

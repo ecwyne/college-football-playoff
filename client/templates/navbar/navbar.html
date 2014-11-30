@@ -1,0 +1,43 @@
+<template name="navbar">
+	<nav class="navbar navbar-default" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Bowl Pick 'em</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">Bowl Pick 'em</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Rules <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="/general-rules">General Rules</a></li>
+						<li><a href="/scoring">Scoring</a></li>
+						<li><a href="/playoff-rules">Playoff Rules</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				{{# if currentUser}}
+				<li><a href="#">Logged in as {{currentUser.username}}</a></li>
+				<li><a href="#" class="logoutBtn">logout</a></li>
+				{{else}}
+				<li>
+					<form class="navbar-form pull-right loginForm">
+						<input class="form-control" type="text" style="width: 150px;" placeholder="username">
+						<input class="form-control" type="password" style="width: 150px;" placeholder="password">
+						<button type="submit" class="btn btn-default">Login</button>
+					</form>
+				</li>
+				<li><a href="/signup">Sign Up</a></li>
+				{{/if}}
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+</template>

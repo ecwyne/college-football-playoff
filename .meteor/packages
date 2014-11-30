@@ -11,4 +11,9 @@ mizzao:bootstrap-3
 aldeed:collection2
 underscore
 pfafman:filesaver
+iron:router
+dburles:collection-helpers
+accounts-password
+natestrauser:connection-banner
+kevohagan:sweetalert
 
