@@ -9,8 +9,11 @@ Template.signup.events({
 				if (err){
 					console.log(err);
 					swal('Error', 'An error occurred signing up. Please try again\n' + err.reason, 'error');
+				} else {
+					//XXX TODO send user to their profile and send welcome email
+					Router.go('my-profile');
 				}
-			})
+			});
 		} else {
 			swal('Incomplete Sign Up', 'Please include ALL fields to sign up.', 'warning');
 		}

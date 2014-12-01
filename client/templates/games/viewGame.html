@@ -1,0 +1,90 @@
+<template name="viewGame">
+	{{#each master}}
+	{{gameId}}
+	<div class="row">
+		<div class="col-xs-4"></div>
+		<div class="col-xs-4">
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td style="min-width: 100px;">{{team1.name}}</td>
+						<th>vs</th>
+						<td style="min-width: 100px;">{{team2.name}}</td>
+					</tr>
+					<tr>
+						<td>{{team1.score}}</td>
+						<th>Actual Score</th>
+						<td>{{team2.score}}</td>
+					</tr>
+					<tr>
+						<td>{{avgScore gameId 1}}</td>
+						<th>Average Score</th>
+						<td>{{avgScore gameId 2}}</td>
+					</tr>
+					<tr>
+						<td>{{pickCount gameId 1}}</td>
+						<th>Picks</th>
+						<td>{{pickCount gameId 2}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-xs-4"></div>
+	</div>
+	{{/each}}
+	<div class="row">
+		<div class="col-xs-6">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>This Game</th>
+						<th>Score Picked</th>
+						<th>Points from 1st</th>
+						<th>Rank</th>
+						<th>Username</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each picks}}
+					{{#if $gt team1.score team2.score}}
+					<tr class="{{winningClass username}}">
+						<td>{{score}}</td>
+						<td>{{team1.score}} - {{team2.score}}</td>
+						<td>{{pointsFrom1st username}}</td>
+						<td>{{getRank username}}</td>
+						<td>{{username}}</td>
+					</tr>
+					{{/if}}
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+		<div class="col-xs-6">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Username</th>
+						<th>Rank</th>
+						<th>Points from 1st</th>
+						<th>Score Picked</th>
+						<th>This Game</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each picks}}
+					{{#if $gt team2.score team1.score}}
+					<tr class="{{winningClass username}}">
+						<td>{{username}}</td>
+						<th>{{getRank username}}</th>
+						<th>{{pointsFrom1st username}}</th>
+						<th>{{team1.score}} - {{team2.score}}</th>
+						<th>{{score}}</th>
+					</tr>
+					{{/if}}
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</template>

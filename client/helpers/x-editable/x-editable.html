@@ -1,0 +1,31 @@
+<template name="editableSpan">
+	<span {{attrs}} class="editable" style="cursor: pointer;"></span>
+</template>
+
+<template name="editableDiv">
+	<div {{attrs}} class="editable"></div>
+</template>
+
+<template name="editableBtn">
+	<button class="btn editable {{btnClass}}" {{attrs}}></button>
+</template>
+
+<template name="editableCheckbox">
+	{{#if val}}
+	<span {{attrs}} class="glyphicon glyphicon-check" style="color: green; cursor: pointer;"></span>
+	{{else}}
+	<span {{attrs}} class="glyphicon glyphicon-unchecked" style="color: red; cursor: pointer;"></span>
+	{{/if}}
+</template>
+
+<template name="editableBtnGroup">
+	<div {{attrs}} class="btn-group btn-group-sm">
+		{{#each buttons}}
+		<button type="button" class="btn {{activeClass ../doc ../field}}" data-value="{{value}}">{{text}}</button>
+		{{/each}}
+	</div>
+</template>
+
+<template name="editableDatepicker">
+	<input type="text" class="form-control text-center datepicker">
+</template>

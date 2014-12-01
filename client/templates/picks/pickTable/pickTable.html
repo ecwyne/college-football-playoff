@@ -1,0 +1,40 @@
+<template name="pickTable">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>gameId</th>
+				<th>Bowl Name</th>
+				<th>Game Time</th>
+				<th>Team Name</th>
+				<th>Score</th>
+				<th></th>
+				<th>Score</th>
+				<th>Team Name</th>
+				<th>Save</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each games}}
+			<tr class="text-center">
+				<td><a href="/game/{{gameId}}">{{gameId}}</a></td>
+				<td>{{actual.name}}</td>
+				<td>{{formatDate gametime 'M/D/YY h:mm A'}}</td>
+				<td>{{actual.team1.name}}</td>
+				<td style="max-width: 75px;">
+					<input id="team1{{gameId}}" type="text" data-team="team1" class="form-control text-center pickInput">
+				</td>
+				<td>vs.</td>
+				<td style="max-width: 75px;">
+					<input id="team2{{gameId}}" type="text" data-team="team2" class="form-control text-center pickInput">
+				</td>
+				<td>{{actual.team2.name}}</td>
+				<td>
+					{{#with dirtyInput this}}
+						<span class="label label-{{class}}">{{text}}</span>
+					{{/with}}
+				</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</template>

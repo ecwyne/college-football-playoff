@@ -4,16 +4,21 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
 insecure
 ecwyne:bottomline
 mizzao:bootstrap-3
 aldeed:collection2
-underscore
 pfafman:filesaver
 iron:router
 dburles:collection-helpers
 accounts-password
 natestrauser:connection-banner
 kevohagan:sweetalert
+yogiben:pretty-email
+natestrauser:x-editable-bootstrap
+alanning:roles
+underscore
+aldeed:autoform
+raix:handlebar-helpers
+mrt:moment
 

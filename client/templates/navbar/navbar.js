@@ -19,3 +19,14 @@ Template.navbar.events({
 		
 	}
 });
+
+Template.navbar.helpers({
+	activePage: function(name){
+		if (Router.current())
+			return _.contains(name.split(','), Router.current().options.route.handler.name) ? 'active' : '';
+	},
+	incompletePicks: function(){
+		if (Meteor.user())
+			return Games.find({username: Meteor.user().username, $where: '!this.team1.score || !this.team2.score'}).count();
+	}
+})
