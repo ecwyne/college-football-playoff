@@ -2,8 +2,7 @@ Template.navbar.events({
 	'click .logoutBtn': function(){
 		Meteor.logout();
 	},
-	'submit .loginForm': function(e, t){
-		console.log(t);
+	'submit .loginForm': function(e){
 		e.preventDefault();
 		var username = $('input[placeholder="username"]').val();
 		var password = $('input[placeholder="password"]').val();
