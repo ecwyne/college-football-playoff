@@ -1,3 +1,59 @@
 <template name="scoringRules">
 	<h1>Scoring</h1>
+	<div class="row rules">
+		<div class="col-md-6 well">
+			<p>Scores are calculated for each game. The points you predicted are compared to the final score of the game for each game and all of the games are summed together to create a total score. <strong>Whoever has the LOWEST score at the end wins!</strong></p>
+			<p>There are two ways to accrue points; difference from actual score and picking the incorrect winner. If your predicted winner in fact loses the game, then you receive <strong>30 points</strong>. Additionally, both team's actual scores are compared to your predicted team score and you will receive <strong>1 point</strong> for every point your prediction is away from the actual score.</p>
+		</div>
+		<div class="col-md-6">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Team A</th>
+						<th>Team B</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Your Prediction</th>
+						<td><input id="a1" class="form-control" type="text"></td>
+						<td><input id="b1" class="form-control" type="text"></td>
+					</tr>
+					<tr>
+						<th>Actual Score</th>
+						<td><input id="a2" class="form-control" type="text"></td>
+						<td><input id="b2" class="form-control" type="text"></td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Reason</th>
+						<th>Points Received</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Incorrect Winner</th>
+						<td>30</td>
+					</tr>
+					<tr>
+						<th>Team A difference</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th>Team B difference</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th>TOTAL</th>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
 </template>

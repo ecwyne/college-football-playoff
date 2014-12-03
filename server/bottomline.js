@@ -16,8 +16,20 @@ function formatGame(game){
 var upsertGames = Meteor.bindEnvironment(function (games){
 	_.each(games, Meteor.bindEnvironment(function(game){
 		game = formatGame(game);
-		Games.update({gameId: game.gameId}, {$set: game}, {upsert: true});
+		Games.update({gameId: game.gameId, username: 'actual'}, {$set: game});
 	}));
 })
 
 Bottomline.ncaaf(upsertGames);
+
+Meteor.methods({
+	'delete-all-games': function(){
+		Games.remove({});
+	},
+	'delete-non-actual': function(){
+		Games.remote({username: {$ne: 'actual'}});
+	},
+	'update-game-id': function (oldId, newId){
+		Games.update({gameId: oldId}, {$set: {gameId: newId}}, {multi: true});
+	}
+})

@@ -11,14 +11,15 @@
 				<th>Score</th>
 				<th>Team Name</th>
 				<th>Save</th>
+				<th>Edit</th>
 			</tr>
 		</thead>
 		<tbody>
 			{{#each games}}
 			<tr class="text-center">
-				<td><a href="/game/{{gameId}}">{{gameId}}</a></td>
+				<td><a href="/game/{{gameId}}" tabindex="-1">{{gameId}}</a></td>
 				<td>{{actual.name}}</td>
-				<td>{{formatDate gametime 'M/D/YY h:mm A'}}</td>
+				<td>{{formatDate actual.gametime 'M/D/YY h:mm A' true}}</td>
 				<td>{{actual.team1.name}}</td>
 				<td style="max-width: 75px;">
 					<input id="team1{{gameId}}" type="text" data-team="team1" class="form-control text-center pickInput">
@@ -32,6 +33,9 @@
 					{{#with dirtyInput this}}
 						<span class="label label-{{class}}">{{text}}</span>
 					{{/with}}
+				</td>
+				<td>
+					<a href="/edit-game/{{gameId}}" tabindex="-1">Edit</a>
 				</td>
 			</tr>
 			{{/each}}
