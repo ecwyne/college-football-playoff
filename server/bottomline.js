@@ -23,11 +23,17 @@ var upsertGames = Meteor.bindEnvironment(function (games){
 Bottomline.ncaaf(upsertGames);
 
 Meteor.methods({
-	'delete-all-games': function(){
-		Games.remove({});
+	'delete-all-games': function(arg){
+		if (Meteor.users.findOne({_id: this.userId}).username == 'ecwyne' && arg == 'rEaLlY')
+			Games.remove({});
 	},
-	'delete-non-actual': function(){
-		Games.remote({username: {$ne: 'actual'}});
+	'delete-non-actual': function(arg){
+		if (Meteor.users.findOne({_id: this.userId}).username == 'ecwyne' && arg == 'rEaLlY'){
+			Games.remove({username: {$ne: 'actual'}});
+		} else {
+			console.log('did not work');
+		}
+			
 	},
 	'update-game-id': function (oldId, newId){
 		Games.update({gameId: oldId}, {$set: {gameId: newId}}, {multi: true});

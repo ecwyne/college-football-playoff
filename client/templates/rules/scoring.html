@@ -4,8 +4,12 @@
 		<div class="col-md-6 well">
 			<p>Scores are calculated for each game. The points you predicted are compared to the final score of the game for each game and all of the games are summed together to create a total score. <strong>Whoever has the LOWEST score at the end wins!</strong></p>
 			<p>There are two ways to accrue points; difference from actual score and picking the incorrect winner. If your predicted winner in fact loses the game, then you receive <strong>30 points</strong>. Additionally, both team's actual scores are compared to your predicted team score and you will receive <strong>1 point</strong> for every point your prediction is away from the actual score.</p>
+			<p>In the following example the {{#if pointWrong}}<strong>incorrect</strong>{{else}}<strong>correct</strong>{{/if}} winner was predicted so <strong>{{pointWrong}}</strong> points were received. The difference between the predicted and actual points scored by <strong>Team A</strong> was <strong>{{pointDiff 'a'}}</strong> and the difference between the predicted and actual points scored by <strong>Team B</strong> was <strong>{{pointDiff 'b'}}</strong>. The resulting total points is <strong>{{pointTotal}}</strong>.</p>
+			<br/>
+			<p style="text-indent: 0px;">Next: Read specific <a href="playoff-rules">playoff rules</a>.</p>
 		</div>
 		<div class="col-md-6">
+			<h4>Edit values to see how score changes.</h4>
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
@@ -17,13 +21,13 @@
 				<tbody>
 					<tr>
 						<th>Your Prediction</th>
-						<td><input id="a1" class="form-control" type="text"></td>
-						<td><input id="b1" class="form-control" type="text"></td>
+						<td><input id="a1" class="form-control" type="number"></td>
+						<td><input id="b1" class="form-control" type="number"></td>
 					</tr>
 					<tr>
 						<th>Actual Score</th>
-						<td><input id="a2" class="form-control" type="text"></td>
-						<td><input id="b2" class="form-control" type="text"></td>
+						<td><input id="a2" class="form-control" type="number"></td>
+						<td><input id="b2" class="form-control" type="number"></td>
 					</tr>
 				</tbody>
 			</table>
@@ -36,8 +40,8 @@
 				</thead>
 				<tbody>
 					<tr>
-						<th>Incorrect Winner</th>
-						<td>30</td>
+						<th>{{#if pointWrong}}Incorrect Winner{{else}}Correct Winner{{/if}}</th>
+						<td>{{pointWrong}}</td>
 					</tr>
 					<tr>
 						<th>Team A difference</th>
@@ -49,7 +53,7 @@
 					</tr>
 					<tr>
 						<th>TOTAL</th>
-						<td></td>
+						<th>{{pointTotal}}</th>
 					</tr>
 				</tbody>
 			</table>

@@ -1,11 +1,18 @@
 <template name="home">
 	<div class="jumbotron">
-		<div class="container">
+		<div class="container text-center">
 			<h1>2014-15 Bowl Pick 'em</h1>
-			<p>Contents ...</p>
 			<p>
-				<a class="btn btn-primary btn-lg">Learn more</a>
+				<a class="btn btn-primary btn-lg" href="/general-rules">Learn how to Play!</a>
 			</p>
+			{{#if currentUser}}
+			<p>
+				<a class="btn btn-primary btn-lg" href="/my-picks">Start Making Predictions!</a>
+			</p>
+			{{else}}
+				{{> signup}}
+			{{/if}}
+			
 		</div>
 	</div>
 </template>

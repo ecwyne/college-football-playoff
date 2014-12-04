@@ -22,7 +22,9 @@
 						<li><a href="/playoff-rules">Playoff Rules</a></li>
 					</ul>
 				</li>
-				<li class="{{activePage 'my-picks'}}"><a href="/my-picks">My Picks <span class="badge">{{incompletePicks}}</span></a></li>
+				{{#if currentUser}}
+				<li class="{{activePage 'my-picks'}}"><a href="/my-picks">My Picks <span class="badge">{{#if incompletePicks}}{{incompletePicks}}{{/if}}</span></a></li>
+				{{/if}}
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				{{# if currentUser}}

@@ -2,7 +2,9 @@
 	{{> navbar}}
 	{{> connectionBanner}}
 	<div class="container">
+		{{#if incompletePicks}}
 		{{> countdown}}
+		{{/if}}
 		{{> yield}}
 	</div>
 </template>

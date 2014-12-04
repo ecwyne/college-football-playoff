@@ -5,3 +5,6 @@
 .rules input{
 	text-align: center;
 }
+.line-through{
+	text-decoration: line-through;
+}
