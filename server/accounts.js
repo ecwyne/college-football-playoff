@@ -16,7 +16,8 @@ Meteor.methods({
 			if (Games.findOne({username: username, gameId: game.gameId})){
 				
 			} else {
-				Games.insert({username: username, gameId: game.gameId, gametime: game.gametime, team1: {score: null}, team2: {score: null}});
+				var usergroup = Meteor.settings.public.usergroup;
+				Games.insert({username: username, usergroup: usergroup, gameId: game.gameId, gametime: game.gametime, team1: {score: null}, team2: {score: null}});
 			}
 			
 		});

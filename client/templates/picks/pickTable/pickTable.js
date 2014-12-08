@@ -11,7 +11,7 @@ Template.pickTable.helpers({
 			return {class: 'success', text: 'Saved'}
 		if (_.isNaN(i1) && _.isNaN(i2) && !t1 && !t2)
 			return {class: 'primary', text: ''}
-		if (_.isNaN(i1) || _.isNaN(i2) && !t1 && !t2)
+		if ((_.isNaN(i1) || _.isNaN(i2)) && (!t1 || !t2))
 			return {class: 'warning', text: 'Incomplete'}
 		return {class: 'danger', text: 'Other'}
 
@@ -35,6 +35,14 @@ Template.pickTable.events({
 	'keypress .pickInput': function(e){
 		if (!_.contains(_.range(48,58), e.which))
 			e.preventDefault();
+	},
+	'click .saveScoresBtn': function(){
+		var out = [['Bowl Name', 'Team 1', 'Team 2', 'Score 1', 'Score 2', '\n']];
+		var games = Games.find({username: Meteor.user().username}, {sort: {gametime: 1}}).fetch();
+		_.each(games, function (e){
+			out.push([e.actual().name, e.actual().team1.name, e.actual().team2.name, e.team1.score, e.team2.score, '\n']);
+		});
+		saveAs(new Blob(out, { type: 'text/csv;charset=utf-8;'}), Meteor.user().username + '-scores.csv');
 	}
 });
 

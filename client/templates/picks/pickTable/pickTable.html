@@ -2,7 +2,9 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
+				{{#if isInRole 'admin'}}
 				<th>gameId</th>
+				{{/if}}
 				<th>Bowl Name</th>
 				<th>Game Time</th>
 				<th>Team Name</th>
@@ -11,16 +13,21 @@
 				<th>Score</th>
 				<th>Team Name</th>
 				<th>Save</th>
+				{{#if isInRole 'admin'}}
 				<th>Edit</th>
+				{{/if}}
 			</tr>
 		</thead>
 		<tbody>
 			{{#each games}}
+			{{#unless actual.playoff}}
 			<tr class="text-center">
+				{{#if isInRole 'admin'}}
 				<td><a href="/game/{{gameId}}" tabindex="-1">{{gameId}}</a></td>
+				{{/if}}
 				<td>{{actual.name}}</td>
-				<td>{{formatDate actual.gametime 'M/D/YY h:mm A' true}}</td>
-				<td>{{actual.team1.name}}</td>
+				<td>{{formatDate actual.gametime 'M/D/YY h:mm A' true}}<br/>{{actual.location}}</td>
+				<td>{{#if actual.team1.rank}}#{{actual.team1.rank}} {{/if}}{{actual.team1.name}}<br/>{{actual.team1.record}}</td>
 				<td style="max-width: 75px;">
 					<input id="team1{{gameId}}" type="text" data-team="team1" class="form-control text-center pickInput">
 				</td>
@@ -28,17 +35,76 @@
 				<td style="max-width: 75px;">
 					<input id="team2{{gameId}}" type="text" data-team="team2" class="form-control text-center pickInput">
 				</td>
-				<td>{{actual.team2.name}}</td>
+				<td>{{#if actual.team2.rank}}#{{actual.team2.rank}} {{/if}}{{actual.team2.name}}<br/>{{actual.team2.record}}</td>
 				<td>
 					{{#with dirtyInput this}}
 						<span class="label label-{{class}}">{{text}}</span>
 					{{/with}}
 				</td>
+				{{#if isInRole 'admin'}}
 				<td>
 					<a href="/edit-game/{{gameId}}" tabindex="-1">Edit</a>
 				</td>
+				{{/if}}
 			</tr>
+			{{/unless}}
 			{{/each}}
 		</tbody>
 	</table>
+	<h2>Possible Championship Scenarios (Read the <a href="/playoff-rules">Playoff Rules</a>)</h2>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				{{#if isInRole 'admin'}}
+				<th>gameId</th>
+				{{/if}}
+				<th>Bowl Name</th>
+				<th>Game Time</th>
+				<th>Team Name</th>
+				<th>Score</th>
+				<th></th>
+				<th>Score</th>
+				<th>Team Name</th>
+				<th>Save</th>
+				{{#if isInRole 'admin'}}
+				<th>Edit</th>
+				{{/if}}
+			</tr>
+		</thead>
+		<tbody>
+			{{#each games}}
+			{{#if actual.playoff}}
+			<tr class="text-center">
+				{{#if isInRole 'admin'}}
+				<td><a href="/game/{{gameId}}" tabindex="-1">{{gameId}}</a></td>
+				{{/if}}
+				<td>{{actual.name}}</td>
+				<td>{{formatDate actual.gametime 'M/D/YY h:mm A' true}}<br/>{{actual.location}}</td>
+				<td>{{#if actual.team1.rank}}#{{actual.team1.rank}} {{/if}}{{actual.team1.name}}<br/>{{actual.team1.record}}</td>
+				<td style="max-width: 75px;">
+					<input id="team1{{gameId}}" type="text" data-team="team1" class="form-control text-center pickInput">
+				</td>
+				<td>vs.</td>
+				<td style="max-width: 75px;">
+					<input id="team2{{gameId}}" type="text" data-team="team2" class="form-control text-center pickInput">
+				</td>
+				<td>{{#if actual.team2.rank}}#{{actual.team2.rank}} {{/if}}{{actual.team2.name}}<br/>{{actual.team2.record}}</td>
+				<td>
+					{{#with dirtyInput this}}
+						<span class="label label-{{class}}">{{text}}</span>
+					{{/with}}
+				</td>
+				{{#if isInRole 'admin'}}
+				<td>
+					<a href="/edit-game/{{gameId}}" tabindex="-1">Edit</a>
+				</td>
+				{{/if}}
+			</tr>
+			{{/if}}
+			{{/each}}
+		</tbody>
+	</table>
+	<div class="text-center">
+		<button class="btn btn-success saveScoresBtn" type="button">Download my Scores</button>
+	</div>
 </template>
