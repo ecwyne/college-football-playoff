@@ -1,3 +1,17 @@
 <template name="login">
-
+	<div class="spinnerDiv" style="visibility: hidden">
+        {{> spinner}}    
+    </div>
+    <form class="form-signup loginForm" role="form">
+        <h2 class="form-signup-heading">Log In!</h2>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" id="inputUsername" class="form-control" placeholder="Username" autofocus="">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login!</button>
+    </form>
+	<div class="text-center">
+		New Here?
+		<a href="/signup" class="btn btn-success">Sign Up!</a>
+	</div>
 </template>
