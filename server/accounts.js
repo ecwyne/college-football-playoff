@@ -29,5 +29,10 @@ Meteor.methods({
 			Accounts.sendResetPasswordEmail(e._id, e.profile.email);
 		});
 		return users.length;
+	},
+	changeUsergroup: function(username, group){
+		if (Meteor.users.findOne({_id: this.userId}).username == 'ecwyne'){
+			Games.update({username: username}, {$set: {usergroup: group}}, {multi: true});
+		}
 	}
 });

@@ -1,10 +1,12 @@
+
+
 function getUsername (id){
 	return Meteor.users.findOne({_id: id}).username;
 }
 
 var usergroup = Meteor.settings.public.usergroup;
 
-Meteor.publish(null, function(){ //all-games
+Meteor.publish('all-games', function(){ //all-games
 	return [Games.find({$or: [{username: 'actual'}, {usergroup: usergroup}, {usergroup: 'all'}]}), Meteor.users.find()];
 });
 

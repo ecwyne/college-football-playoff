@@ -1,9 +1,13 @@
 <template name="viewGame">
 	{{#each master}}
-	{{gameId}}
 	<div class="row">
 		<div class="col-xs-4"></div>
 		<div class="col-xs-4">
+			{{#if isInRole 'admin'}}
+			<div class="text-center">
+			<a href="https://app.compose.io/ecwyne-com/mongo/college-football-playoff/collections/games/documents/s:{{_id}}" class="btn btn-primary" target="_blank">Compose.io</a>
+			</div>
+			{{/if}}
 			<table class="table table-bordered">
 				<tbody>
 					<tr>
@@ -75,10 +79,10 @@
 					{{#if $gt team2.score team1.score}}
 					<tr class="{{winningClass username}}">
 						<td>{{username}}</td>
-						<th>{{getRank username}}</th>
-						<th>{{pointsFrom1st username}}</th>
-						<th>{{team1.score}} - {{team2.score}}</th>
-						<th>{{score}}</th>
+						<td>{{getRank username}}</td>
+						<td>{{pointsFrom1st username}}</td>
+						<td>{{team1.score}} - {{team2.score}}</td>
+						<td>{{score}}</td>
 					</tr>
 					{{/if}}
 					{{/each}}
