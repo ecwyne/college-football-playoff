@@ -13,7 +13,7 @@ function formatGame(game){
 	return game;
 }
 
-var upsertGames = Meteor.bindEnvironment(function (games){
+var upsertGames = Meteor.bindEnvironment(function (err, games){
 	_.each(games, Meteor.bindEnvironment(function(game){
 		game = formatGame(game);
 		Games.update({gameId: game.gameId, username: 'actual'}, {$set: game});
@@ -37,5 +37,8 @@ Meteor.methods({
 	},
 	'update-game-id': function (oldId, newId){
 		Games.update({gameId: oldId}, {$set: {gameId: newId}}, {multi: true});
+	},
+	getBottomline: function(){
+		return Meteor.wrapAsync(Bottomline.ncaaf, Bottomline)()
 	}
 })
