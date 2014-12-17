@@ -7,7 +7,8 @@ function getUsername (id){
 var usergroup = Meteor.settings.public.usergroup;
 
 Meteor.publish('all-games', function(){ //all-games
-	return [Games.find({$or: [{username: 'actual'}, {usergroup: usergroup}, {usergroup: 'all'}]}), Meteor.users.find()];
+	var uNames = _.uniq(Games.find({$or: [{username: 'actual'}, {usergroup: usergroup}, {usergroup: 'all'}]}).map(function (e){return e.username}))
+	return [Games.find({$or: [{username: 'actual'}, {usergroup: usergroup}, {usergroup: 'all'}]}), Meteor.users.find({username: {$in: uNames}})];
 });
 
 Meteor.publish('my-games', function(){
