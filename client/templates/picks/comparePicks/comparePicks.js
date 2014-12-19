@@ -26,7 +26,7 @@ Template.comparePicks.helpers({
 		return out;
 	},
 	compareClass: function(games){
-		return (games.compare1.team1.score > games.compare1.team2.score) == (games.compare2.team1.score > games.compare2.team2.score) ? '' : 'warning';
+		return (games.compare1.team1.score > games.compare1.team2.score) == (games.compare2.team1.score > games.compare2.team2.score) ? '' : 'info';
 	},
 	winnerName: function(game){
 		if (!_.isNumber(game.team1.score) || !_.isNumber(game.team2.score)) return 'incomplete';
