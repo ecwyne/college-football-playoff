@@ -23,7 +23,7 @@ Template.comparePicks.helpers({
 				compare2: _.findWhere(val, {username: Session.get('compare2')})
 			})
 		})
-		return out;
+		return _.sortBy(out, function (e){return e.actual.gametime.valueOf()});
 	},
 	compareClass: function(games){
 		return (games.compare1.team1.score > games.compare1.team2.score) == (games.compare2.team1.score > games.compare2.team2.score) ? '' : 'info';

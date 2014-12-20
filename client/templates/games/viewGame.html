@@ -1,13 +1,10 @@
 <template name="viewGame">
 	{{#each master}}
-	<div class="row">
+	<div class="row text-center">
+		<h1>{{actual.name}} Bowl</h1>
+		<h2>{{actual.status}}</h2>
 		<div class="col-xs-4"></div>
 		<div class="col-xs-4">
-			{{#if isInRole 'admin'}}
-			<div class="text-center">
-			<a href="https://app.compose.io/ecwyne-com/mongo/college-football-playoff/collections/games/documents/s:{{_id}}" class="btn btn-primary" target="_blank">Compose.io</a>
-			</div>
-			{{/if}}
 			<table class="table table-bordered">
 				<tbody>
 					<tr>
@@ -35,6 +32,11 @@
 		</div>
 		<div class="col-xs-4"></div>
 	</div>
+	{{#if isInRole 'admin'}}
+		<div class="text-center">
+			<a href="https://app.compose.io/ecwyne-com/mongo/college-football-playoff/collections/games/documents/s:{{_id}}" class="btn btn-primary" target="_blank">Compose.io</a>
+		</div>
+		{{/if}}
 	{{/each}}
 	<div class="row">
 		<div class="col-xs-6">
@@ -89,6 +91,7 @@
 				</tbody>
 			</table>
 		</div>
+		
 	</div>
 
 </template>

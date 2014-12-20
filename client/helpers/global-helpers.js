@@ -47,10 +47,12 @@ Template.registerHelper('getSortedList', function(){
 
 Template.registerHelper('pointsFrom1st', function (username){
 	var arr = getSortedList();
-	return _.findWhere(arr, {username: username}).score - _.min(_.pluck(arr, 'score'));
+	if (arr.length)
+		return _.findWhere(arr, {username: username}).score - _.min(_.pluck(arr, 'score'));
 });
 
 Template.registerHelper('getRank', function (username){
 	var arr = getSortedList();
-	return _.indexOf(_.pluck(arr, 'username'), username) + 1;
+	if (arr.length)
+		return _.indexOf(_.pluck(arr, 'username'), username) + 1;
 });

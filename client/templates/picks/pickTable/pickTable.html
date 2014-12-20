@@ -25,15 +25,15 @@
 				{{#if isInRole 'admin'}}
 				<td><a href="/game/{{gameId}}" tabindex="-1">{{gameId}}</a></td>
 				{{/if}}
-				<td>{{actual.name}}</td>
+				<td><a href="/game/{{gameId}}">{{actual.name}}</a></td>
 				<td>{{formatDate actual.gametime 'M/D/YY h:mm A' true}}<br/>{{actual.location}}</td>
 				<td>{{#if actual.team1.rank}}#{{actual.team1.rank}} {{/if}}{{actual.team1.name}}<br/>{{actual.team1.record}}</td>
 				<td style="max-width: 75px;">
-					<input id="team1{{gameId}}" type="text" data-team="team1" class="form-control text-center pickInput">
+					<input id="team1{{gameId}}" type="text" data-team="team1" class="form-control text-center pickInput" disabled>
 				</td>
 				<td>vs.</td>
 				<td style="max-width: 75px;">
-					<input id="team2{{gameId}}" type="text" data-team="team2" class="form-control text-center pickInput">
+					<input id="team2{{gameId}}" type="text" data-team="team2" class="form-control text-center pickInput" disabled>
 				</td>
 				<td>{{#if actual.team2.rank}}#{{actual.team2.rank}} {{/if}}{{actual.team2.name}}<br/>{{actual.team2.record}}</td>
 				<td>
@@ -82,11 +82,11 @@
 				<td>{{formatDate actual.gametime 'M/D/YY h:mm A' true}}<br/>{{actual.location}}</td>
 				<td>{{#if actual.team1.rank}}#{{actual.team1.rank}} {{/if}}{{actual.team1.name}}<br/>{{actual.team1.record}}</td>
 				<td style="max-width: 75px;">
-					<input id="team1{{gameId}}" type="text" data-team="team1" class="form-control text-center pickInput">
+					<input id="team1{{gameId}}" type="text" data-team="team1" class="form-control text-center pickInput" disabled>
 				</td>
 				<td>vs.</td>
 				<td style="max-width: 75px;">
-					<input id="team2{{gameId}}" type="text" data-team="team2" class="form-control text-center pickInput">
+					<input id="team2{{gameId}}" type="text" data-team="team2" class="form-control text-center pickInput" disabled>
 				</td>
 				<td>{{#if actual.team2.rank}}#{{actual.team2.rank}} {{/if}}{{actual.team2.name}}<br/>{{actual.team2.record}}</td>
 				<td>

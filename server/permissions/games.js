@@ -11,6 +11,7 @@ Games.allow({
 //alower owners to update their own games
 Games.allow({
 	update: function(userId, doc){
+		return false;
 		return Meteor.users.findOne(userId).username == doc.username;
 	}
 });
@@ -36,6 +37,7 @@ Games.deny({
 		if (Roles.userIsInRole(userId, 'admin')){
 			return false;
 		}
+		return true;
 		return moment() > moment('12/21/2014');
 	}
 });
