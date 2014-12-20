@@ -36,6 +36,6 @@ Games.deny({
 		if (Roles.userIsInRole(userId, 'admin')){
 			return false;
 		}
-		return moment() > moment('12/20/2014');
+		return moment() > moment('12/21/2014');
 	}
 });
