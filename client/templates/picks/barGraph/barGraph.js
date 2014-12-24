@@ -11,7 +11,10 @@ Template.barGraph.helpers({
                 text: 'Points from First'
             },
             xAxis: {
-                categories: _.pluck(sortedList, 'username')
+                categories: _.pluck(sortedList, 'username'),
+                labels: {
+                    rotation: -45
+                }
             },
             tooltip: {
                 pointFormat: '<b>{point.y} pts</b>'
@@ -22,7 +25,10 @@ Template.barGraph.helpers({
             series: [{
                 type: 'column',
                 name: 'Points from First',
-                data: _.pluck(sortedList, 'score').map(function (e){ return e - sortedList[0].score})
+                data: _.zip(_.pluck(sortedList, 'username'), _.pluck(sortedList, 'score').map(function (e){ return e - sortedList[0].score})),
+                dataLabels: {
+                    enabled: true
+                }
             }]
         };
     }
