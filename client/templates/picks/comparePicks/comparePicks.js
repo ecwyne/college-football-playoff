@@ -26,14 +26,20 @@ Template.comparePicks.helpers({
 		return _.sortBy(out, function (e){return e.actual.gametime.valueOf()});
 	},
 	compareClass: function(games){
-		return (games.compare1.team1.score > games.compare1.team2.score) == (games.compare2.team1.score > games.compare2.team2.score) ? '' : 'info';
+		if (games){
+			return (games.compare1.team1.score > games.compare1.team2.score) == (games.compare2.team1.score > games.compare2.team2.score) ? '' : 'info';
+		}
 	},
 	winnerName: function(game){
-		if (!_.isNumber(game.team1.score) || !_.isNumber(game.team2.score)) return 'incomplete';
-		return game.team1.score > game.team2.score ? game.actual().team1.name : game.actual().team2.name;
+		if (game){
+			if (!_.isNumber(game.team1.score) || !_.isNumber(game.team2.score)) return 'incomplete';
+			return game.team1.score > game.team2.score ? game.actual().team1.name : game.actual().team2.name;
+		}
 	},
 	correctWinnerClass: function(game){
-		if (!game.actual().finished) return 'label-default';
-		return (game.team1.score > game.team2.score) == (game.actual().team1.score > game.actual().team2.score) ? 'label-success' : 'label-danger';
+		if (game){
+			if (!game.actual().finished) return 'label-default';
+			return (game.team1.score > game.team2.score) == (game.actual().team1.score > game.actual().team2.score) ? 'label-success' : 'label-danger';
+		}
 	}
 });
