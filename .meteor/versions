@@ -70,6 +70,7 @@ mrt:moment@2.8.1
 natestrauser:connection-banner@0.4.3
 natestrauser:select2@3.5.1
 natestrauser:x-editable-bootstrap@1.5.2_3
+neo:reveal-js@2.6.2
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
 observe-sequence@1.0.7

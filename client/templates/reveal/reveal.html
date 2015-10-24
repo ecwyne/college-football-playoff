@@ -1,0 +1,33 @@
+<template name="revealLayout">
+	<head>
+		<link rel="stylesheet" href="/packages/neo_reveal-js/reveal.js/css/theme/default.css" id="theme" disabled="true"/>
+		<link rel="stylesheet" href="/packages/neo_reveal-js/reveal.js/css/reveal.css" id="reveal-css" disabled="true"/>
+	</head>
+	{{> navbar}}
+	{{> yield}}
+</template>
+
+<template name="reveal">
+	<div class="reveal">
+		<div class="slides">
+			{{#each games}}
+			<section id="{{this}}">
+				<div class="row">
+					<div class="col-xs-5">Team {{this}}1</div>
+					<div class="col-xs-2">VS</div>
+					<div class="col-xs-5">Team {{this}}2</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-5">
+						<input type="text" value="0" class="dial">
+					</div>
+					<div class="col-xs-2"></div>
+					<div class="col-xs-5">
+						<input type="text" value="0" class="dial">
+					</div>
+				</div>
+			</section>
+			{{/each}}
+		</div>
+	</div>
+</template>
