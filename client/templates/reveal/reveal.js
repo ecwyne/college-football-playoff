@@ -13,16 +13,6 @@ Template.reveal.onRendered(function (){
 	Reveal.slide();
 });
 
-Template.reveal.onCreated(function (){
-	$('#theme').attr('disabled', false);
-	$('#reveal-css').attr('disabled', false);
-});
-
-Template.reveal.onDestroyed(function (){
-	$('#theme').attr('disabled', true);
-	$('#reveal-css').attr('disabled', true);
-});
-
 Template.reveal.events({
 	'click .btn': function (){
 		alert('frick yes');
