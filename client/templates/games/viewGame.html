@@ -52,12 +52,12 @@
 				<tbody>
 					{{#each toPairs picks}}
 					{{#if $gt this.[1].[0] this.[1].[1]}}
-					<tr class="{{winningClass username}}">
-						<td>{{score}}</td>
-						<td>{{teams.[0].score}} - {{teams.[1].score}}</td>
-						<td>{{pointsFrom1st username}}</td>
-						<td>{{getRank username}}</td>
-						<td>{{username}}</td>
+					<tr class="{{winningClass this.[0]}}">
+						<td>{{scoreFor .. this.[0]}}</td>
+						<td>{{this.[1].[0]}} - {{this.[1].[1]}}</td>
+						<td>{{getRankProp this.[0] 'fromFirst'}}</td>
+						<td>{{getRankProp this.[0] 'rank'}}</td>
+						<td>{{getUsername this.[0]}}</td>
 					</tr>
 					{{/if}}
 					{{/each}}
@@ -78,9 +78,9 @@
 				<tbody>
 					{{#each toPairs picks}}
 					{{#if $gt this.[1].[1] this.[1].[0]}}
-					<tr class="{{winningClass username}}">
+					<tr class="{{winningClass this.[0]}}">
 						<td>{{getUsername this.[0]}}</td>
-						<td>{{getRank username}}</td>
+						<td>{{getRankProp this.[0] 'rank'}}</td>
 						<td>{{getRankProp this.[0] 'fromFirst'}}</td>
 						<td>{{this.[1].[0]}} - {{this.[1].[1]}}</td>
 						<td>{{scoreFor .. this.[0]}}</td>

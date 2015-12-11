@@ -9,7 +9,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{{#each games}}
+			{{#each this}}
 			<tr>
 				<td><a href="/game/{{gameId}}">{{name}}</a></td>
 				<td>
@@ -20,12 +20,12 @@
 							<span class="label label-success" style="font-size: 18px;">Live</span>
 						{{/if}}
 					{{else}}
-						{{formatDate gametime true}}
+						{{formatDate date 'hh:mm a' true}}
 					{{/if}}
 				</td>
 				<td>
 					{{#if started}}
-						{{team1.score}} - {{team2.score}}
+						{{teams.[0].score}} - {{teams.[1].score}}
 					{{/if}}
 				</td>
 			</tr>

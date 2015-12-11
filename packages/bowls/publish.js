@@ -7,3 +7,7 @@ Meteor.publish('my-picks', function(){
 Meteor.publish('bowl-by-id', function (id){
 	return Bowls.find({$or: [{gameId: id}, {_id: id}]});
 });
+
+Meteor.publish('all-bowls', function (){
+	return Bowls.find({}, {sort: {date: 1}});
+});

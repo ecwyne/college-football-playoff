@@ -6,7 +6,7 @@
 				<th>
 					<select name="compare1" id="compare1" class="select2">
 						{{#each users}}
-						<option value="{{username}}">{{username}}</option>
+						<option value="{{_id}}">{{rank.rank}}. {{username}}</option>
 						{{/each}}
 					</select>
 				</th>
@@ -14,18 +14,18 @@
 				<th>
 					<select name="compare2" id="compare2" class="select2">
 						{{#each users}}
-						<option value="{{username}}">{{username}}</option>
+						<option value="{{_id}}">{{rank.rank}}. {{username}}</option>
 						{{/each}}
 					</select>
 				</th>
 			</tr>
 		</thead>
 		<tbody>
-			{{#each compareGames}}
+			{{#each bowls}}
 			<tr class="{{compareClass this}}">
-				<td><span style="font-size: 20px" class="label {{correctWinnerClass compare1}}">{{winnerName compare1}}</span></td>
-				<td><a href="/game/{{actual.gameId}}">{{actual.name}}</a><br/>{{formatDate actual.gametime true}}</td>
-				<td><span style="font-size: 20px" class="label {{correctWinnerClass compare2}}">{{winnerName compare2}}</span></td>
+				<td><span style="font-size: 20px" class="label {{correctWinnerClass (getStateVar 'compare1')}}">{{winnerName (getStateVar 'compare1')}}</span></td>
+				<td><a href="/game/{{gameId}}">{{name}}</a><br/>{{formatDate date true}}</td>
+				<td><span style="font-size: 20px" class="label {{correctWinnerClass (getStateVar 'compare2')}}">{{winnerName (getStateVar 'compare2')}}</span></td>
 			</tr>
 			{{/each}}
 		</tbody>

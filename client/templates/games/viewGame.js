@@ -12,7 +12,7 @@ Template.viewGame.helpers({
 		);
 		return (sum(this)/(R.keys(this.picks).length)).toFixed(1);
 	},
-	winningClass: function(username){
-		return Blaze._globalHelpers.getRank(username) == 1 ? 'success' : '';
+	winningClass: function(userId){
+		return R.path(['rank', 'rank'], Meteor.users.findOne(userId)) == 1 ? 'success' : '';
 	}
-})
+});

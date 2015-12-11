@@ -26,7 +26,3 @@ Template.navbar.helpers({
 			return _.contains(name.split(','), Router.current().options.route.handler.name) ? 'active' : '';
 	}
 });
-Template.registerHelper('incompletePicks', function(){
-	if (Meteor.user())
-		return Games.find({username: Meteor.user().username, $where: '!this.team1.score || !this.team2.score'}).count();
-})

@@ -2,7 +2,7 @@ var dateDep = new Tracker.Dependency()
 
 Template.registerHelper('fromNow', function(){
 	dateDep.depend();
-	return moment('12/20/2014').fromNow();
+	return moment(new Date('12/20/2015')).fromNow();
 })
 
 Meteor.setInterval(function(){

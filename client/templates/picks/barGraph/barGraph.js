@@ -1,6 +1,5 @@
 Template.barGraph.helpers({
     topGenresChart: function() {
-        var sortedList = Blaze._globalHelpers.getSortedList();
         return {
             chart: {
                 plotBackgroundColor: null,
@@ -11,7 +10,7 @@ Template.barGraph.helpers({
                 text: 'Points from First'
             },
             xAxis: {
-                categories: _.pluck(sortedList, 'username'),
+                categories: R.map(R.prop('username'), Meteor.users.find().fetch()),
                 labels: {
                     rotation: -45
                 }
@@ -25,7 +24,7 @@ Template.barGraph.helpers({
             series: [{
                 type: 'column',
                 name: 'Points from First',
-                data: _.zip(_.pluck(sortedList, 'username'), _.pluck(sortedList, 'score').map(function (e){ return e - sortedList[0].score})),
+                data: R.map(e => [e.username, e.rank.fromFirst], Meteor.users.find().fetch()),
                 dataLabels: {
                     enabled: true
                 }
