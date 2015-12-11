@@ -38,7 +38,7 @@ function updateRanks(){
 		}
 	}, totals)))
 	var rank = 1;
-	arr = R.map(R.assoc('rank', rank++), arr);
+	arr = R.map((e) => R.assoc('rank', rank++)(e), arr);
 
 	arr.forEach(function (user){
 		Meteor.users.update(user.id, {$set: {rank: R.dissoc('id', user)}});

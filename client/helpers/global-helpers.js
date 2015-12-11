@@ -13,8 +13,9 @@ Template.registerHelper('formatDate', function (){
 	return out;
 });
 
-Template.registerHelper('getStateVar', function (key){
-	return Router.current().state.get(R.join.apply(R, ['', R.filter(R.is(String,), _.toArray(arguments))]));
+Template.registerHelper('getStateVar', function (arg){
+	var key = R.join.apply(R, ['', R.filter(R.is(String,), _.toArray(arguments))]);
+	return Router.current().state.get(key);
 });
 
 Template.registerHelper('toPairs', function (obj){
