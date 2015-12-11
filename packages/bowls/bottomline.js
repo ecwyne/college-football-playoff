@@ -6,8 +6,8 @@ function updateGames(){
 					status: game.status,
 					started: game.started,
 					finished: game.finished,
-					'teams.0': game.team1,
-					'teams.1': game.team2,
+					'teams.0.score': game.team1.score,
+					'teams.1.score': game.team2.score,
 					date: game.date
 				}})
 			});
@@ -47,3 +47,7 @@ function updateRanks(){
 
 Meteor.setInterval(updateGames, 1000*60*2);
 updateGames();
+
+Meteor.methods({
+	updateRanks: updateRanks
+});

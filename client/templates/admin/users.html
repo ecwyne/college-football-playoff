@@ -1,0 +1,29 @@
+<template name="users">
+	<h1>Users</h1>
+	<table class="table table-condensed table-bordered text-center table-hover">
+		<thead>
+			<tr>
+				<th>Username</th>
+				<th>Email</th>
+				<th>Complete</th>
+				<th>Paid</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each users}}
+			<tr>
+				<td>{{username}}</td>
+				<td>{{profile.email}}</td>
+				<td>{{completeCount _id}}</td>
+				<td>
+					{{#if profile.paid}}
+					<span style="cursor: pointer; color: green" class="glyphicon glyphicon-check"></span>
+					{{else}}
+					<span style="cursor: pointer; color: red" class="glyphicon glyphicon-unchecked"></span>
+					{{/if}}
+				</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</template>

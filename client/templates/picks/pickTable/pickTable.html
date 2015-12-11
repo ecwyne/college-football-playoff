@@ -34,7 +34,7 @@
 				{{#if isInRole 'admin'}}
 				<td><a href="/game/{{gameId}}" tabindex="-1">{{gameId}}</a></td>
 				{{/if}}
-				<td><a href="/game/{{gameId}}">{{name}}</a></td>
+				<td><a href="/game/{{gameId}}" tabindex="-1">{{name}}</a></td>
 				<td>{{formatDate date 'M/D/YY h:mm A' true}}<br/>{{location}}</td>
 				<td>{{#if teams.[0].rank}}#{{teams.[0].rank}} {{/if}}{{teams.[0].name}}<br/>{{teams.[0].record}}</td>
 				<td style="max-width: 75px;">
