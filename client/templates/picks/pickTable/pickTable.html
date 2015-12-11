@@ -12,18 +12,18 @@
 		<thead>
 			<tr>
 				{{#if isInRole 'admin'}}
-				<th>gameId</th>
+				<th class="hidden-xs hidden-sm">gameId</th>
 				{{/if}}
-				<th>Bowl Name</th>
-				<th>Game Time</th>
+				<th class="hidden-xs hidden-sm">Bowl Name</th>
+				<th class="hidden-xs hidden-sm">Game Time</th>
 				<th>Team Name</th>
 				<th>Score</th>
 				<th></th>
 				<th>Score</th>
 				<th>Team Name</th>
-				<th>Save</th>
+				<th class="hidden-xs hidden-sm">Save</th>
 				{{#if isInRole 'admin'}}
-				<th>Edit</th>
+				<th class="hidden-xs hidden-sm">Edit</th>
 				{{/if}}
 			</tr>
 		</thead>
@@ -32,10 +32,10 @@
 			{{#if $eq playoff ../bool}}
 			<tr class="text-center">
 				{{#if isInRole 'admin'}}
-				<td><a href="/game/{{gameId}}" tabindex="-1">{{gameId}}</a></td>
+				<td class="hidden-xs hidden-sm"><a href="/game/{{gameId}}" tabindex="-1">{{gameId}}</a></td>
 				{{/if}}
-				<td><a href="/game/{{gameId}}" tabindex="-1">{{name}}</a></td>
-				<td>{{formatDate date 'M/D/YY h:mm A' true}}<br/>{{location}}</td>
+				<td class="hidden-xs hidden-sm"><a href="/game/{{gameId}}" tabindex="-1">{{name}}</a></td>
+				<td class="hidden-xs hidden-sm">{{formatDate date 'M/D/YY h:mm A' true}}<br/>{{location}}</td>
 				<td>{{#if teams.[0].rank}}#{{teams.[0].rank}} {{/if}}{{teams.[0].name}}<br/>{{teams.[0].record}}</td>
 				<td style="max-width: 75px;">
 					<input id="team1{{gameId}}" type="text" data-index="0" value="{{myPicks 0}}" class="form-control text-center pickInput">
@@ -45,13 +45,13 @@
 					<input id="team2{{gameId}}" type="text" data-index="1" value="{{myPicks 1}}" class="form-control text-center pickInput">
 				</td>
 				<td>{{#if teams.[1].rank}}#{{teams.[1].rank}} {{/if}}{{teams.[1].name}}<br/>{{teams.[1].record}}</td>
-				<td>
+				<td class="hidden-xs hidden-sm">
 					{{#with (getStateVar 'saving' gameId)}}
 						<h3 style="margin-top: 0px;"><span class="{{class}}">{{text}}</span></h3>
 					{{/with}}
 				</td>
 				{{#if isInRole 'admin'}}
-				<td>
+				<td class="hidden-xs hidden-sm">
 					<a href="/edit-game/{{gameId}}" tabindex="-1">Edit</a>
 				</td>
 				{{/if}}
