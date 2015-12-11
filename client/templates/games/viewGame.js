@@ -1,16 +1,16 @@
 Template.viewGame.helpers({
-	pickCount: function(gameId, team){
-		var them = team == 1 ? 2 : 1;
-		return Games.find({
-			gameId: gameId, 
-			username: {$ne: 'actual'}, 
-			$where: 'this.team' + team + '.score > this.team' + them + '.score'
-		}).count();
+	pickCount: function(index){
+		var compare = index == 0 ? R.gt : R.lt;
+		return R.values(this.picks).filter((e) => compare.apply(R, e)).length
 	},
-	avgScore: function(gameId, team){
-		var them = team == 1 ? 2 : 1;
-		var arr = Games.find({gameId: gameId, username: {$ne: 'actual'}}).map(function(e){return e['team' + team].score}).filter(function (e){return e > 0});
-		return (_.reduce(arr, function(a, b){return a+b}) / _.size(arr)).toFixed(2);
+	avgScore: function(index){
+		var sum = R.pipe(
+			R.prop('picks'),
+			R.values,
+			R.map(R.prop(index)),
+			R.reduce(R.add, 0)
+		);
+		return (sum(this)/(R.keys(this.picks).length)).toFixed(1);
 	},
 	winningClass: function(username){
 		return Blaze._globalHelpers.getRank(username) == 1 ? 'success' : '';

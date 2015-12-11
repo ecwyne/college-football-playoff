@@ -1,57 +1,13 @@
 <template name="pickTable">
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				{{#if isInRole 'admin'}}
-				<th>gameId</th>
-				{{/if}}
-				<th>Bowl Name</th>
-				<th>Game Time</th>
-				<th>Team Name</th>
-				<th>Score</th>
-				<th></th>
-				<th>Score</th>
-				<th>Team Name</th>
-				<th>Save</th>
-				{{#if isInRole 'admin'}}
-				<th>Edit</th>
-				{{/if}}
-			</tr>
-		</thead>
-		<tbody>
-			{{#each games}}
-			{{#unless actual.playoff}}
-			<tr class="text-center">
-				{{#if isInRole 'admin'}}
-				<td><a href="/game/{{gameId}}" tabindex="-1">{{gameId}}</a></td>
-				{{/if}}
-				<td><a href="/game/{{gameId}}">{{actual.name}}</a></td>
-				<td>{{formatDate actual.gametime 'M/D/YY h:mm A' true}}<br/>{{actual.location}}</td>
-				<td>{{#if actual.team1.rank}}#{{actual.team1.rank}} {{/if}}{{actual.team1.name}}<br/>{{actual.team1.record}}</td>
-				<td style="max-width: 75px;">
-					<input id="team1{{gameId}}" type="text" data-team="team1" class="form-control text-center pickInput" disabled>
-				</td>
-				<td>vs.</td>
-				<td style="max-width: 75px;">
-					<input id="team2{{gameId}}" type="text" data-team="team2" class="form-control text-center pickInput" disabled>
-				</td>
-				<td>{{#if actual.team2.rank}}#{{actual.team2.rank}} {{/if}}{{actual.team2.name}}<br/>{{actual.team2.record}}</td>
-				<td>
-					{{#with dirtyInput this}}
-						<span class="label label-{{class}}">{{text}}</span>
-					{{/with}}
-				</td>
-				{{#if isInRole 'admin'}}
-				<td>
-					<a href="/edit-game/{{gameId}}" tabindex="-1">Edit</a>
-				</td>
-				{{/if}}
-			</tr>
-			{{/unless}}
-			{{/each}}
-		</tbody>
-	</table>
+	{{> pickTableDetails docs=this bool=false}}
 	<h2>Possible Championship Scenarios (Read the <a href="/playoff-rules">Playoff Rules</a>)</h2>
+	{{> pickTableDetails docs=this bool=true}}
+	<div class="text-center">
+		<button class="btn btn-success saveScoresBtn" type="button">Download my Scores</button>
+	</div>
+</template>
+
+<template name="pickTableDetails">
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -72,26 +28,26 @@
 			</tr>
 		</thead>
 		<tbody>
-			{{#each games}}
-			{{#if actual.playoff}}
+			{{#each docs}}
+			{{#if $eq playoff ../bool}}
 			<tr class="text-center">
 				{{#if isInRole 'admin'}}
 				<td><a href="/game/{{gameId}}" tabindex="-1">{{gameId}}</a></td>
 				{{/if}}
-				<td>{{actual.name}}</td>
-				<td>{{formatDate actual.gametime 'M/D/YY h:mm A' true}}<br/>{{actual.location}}</td>
-				<td>{{#if actual.team1.rank}}#{{actual.team1.rank}} {{/if}}{{actual.team1.name}}<br/>{{actual.team1.record}}</td>
+				<td><a href="/game/{{gameId}}">{{name}}</a></td>
+				<td>{{formatDate date 'M/D/YY h:mm A' true}}<br/>{{location}}</td>
+				<td>{{#if teams.[0].rank}}#{{teams.[0].rank}} {{/if}}{{teams.[0].name}}<br/>{{teams.[0].record}}</td>
 				<td style="max-width: 75px;">
-					<input id="team1{{gameId}}" type="text" data-team="team1" class="form-control text-center pickInput" disabled>
+					<input id="team1{{gameId}}" type="text" data-index="0" value="{{myPicks 0}}" class="form-control text-center pickInput">
 				</td>
 				<td>vs.</td>
 				<td style="max-width: 75px;">
-					<input id="team2{{gameId}}" type="text" data-team="team2" class="form-control text-center pickInput" disabled>
+					<input id="team2{{gameId}}" type="text" data-index="1" value="{{myPicks 1}}" class="form-control text-center pickInput">
 				</td>
-				<td>{{#if actual.team2.rank}}#{{actual.team2.rank}} {{/if}}{{actual.team2.name}}<br/>{{actual.team2.record}}</td>
+				<td>{{#if teams.[1].rank}}#{{teams.[1].rank}} {{/if}}{{teams.[1].name}}<br/>{{teams.[1].record}}</td>
 				<td>
-					{{#with dirtyInput this}}
-						<span class="label label-{{class}}">{{text}}</span>
+					{{#with (getStateVar 'saving' gameId)}}
+						<h3 style="margin-top: 0px;"><span class="{{class}}">{{text}}</span></h3>
 					{{/with}}
 				</td>
 				{{#if isInRole 'admin'}}
@@ -104,7 +60,4 @@
 			{{/each}}
 		</tbody>
 	</table>
-	<div class="text-center">
-		<button class="btn btn-success saveScoresBtn" type="button">Download my Scores</button>
-	</div>
 </template>

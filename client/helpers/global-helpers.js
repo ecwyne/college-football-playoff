@@ -56,3 +56,23 @@ Template.registerHelper('getRank', function (username){
 	if (arr.length)
 		return _.indexOf(_.pluck(arr, 'username'), username) + 1;
 });
+
+Template.registerHelper('getStateVar', function (key){
+	return Router.current().state.get(R.join.apply(R, ['', R.filter(R.is(String,), _.toArray(arguments))]));
+});
+
+Template.registerHelper('toPairs', function (obj){
+	return R.toPairs(obj);
+});
+
+Template.registerHelper('getUsername', function (id){
+	return R.prop('username', Meteor.users.findOne(id))
+});
+
+Template.registerHelper('scoreFor', function (bowl, id){
+	return bowl.scoreFor(id);
+});
+
+Template.registerHelper('getRankProp', function (id, prop){
+	return R.path(['rank', prop], Meteor.users.findOne(id));
+});

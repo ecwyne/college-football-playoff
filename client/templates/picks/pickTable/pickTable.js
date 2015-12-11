@@ -1,35 +1,37 @@
-var inputDep = new Tracker.Dependency()
-
-Template.pickTable.helpers({
-	dirtyInput: function(game){
-		inputDep.depend();
-		var t1 = game.team1.score
-		var t2 = game.team2.score
-		var i1 = parseInt($('#team1'+game.gameId).val())
-		var i2 = parseInt($('#team2'+game.gameId).val())
-		if (t1 === i1 && t2 === i2)
-			return {class: 'success', text: 'Saved'}
-		if (_.isNaN(i1) && _.isNaN(i2) && !t1 && !t2)
-			return {class: 'primary', text: ''}
-		if ((_.isNaN(i1) || _.isNaN(i2)) && (!t1 || !t2))
-			return {class: 'warning', text: 'Incomplete'}
-		return {class: 'danger', text: 'Other'}
-
+Template.pickTableDetails.helpers({
+	myPicks: function (index){
+		return R.path(['picks', Meteor.userId(), index], this);
+	},
+	isPlayoff: function(bool){
+		console.log(this, bool);
+		return this.playoff == bool;
 	}
-})
+});
 
 Template.pickTable.events({
 	'change .pickInput': function(e){
-		inputDep.changed();
-		var game = Blaze.getData(e.currentTarget);
-		if (game[e.currentTarget.dataset.team == 'team1' ? 'team2' : 'team1'].score == parseInt(e.currentTarget.value)){
+		var bowl = this;
+		var {index} = e.currentTarget.dataset;
+		var newScore = Number(e.currentTarget.value);
+		var oldScore = R.pathOr(null, ['picks', Meteor.userId(), index], bowl);
+		var opponentScore = R.pathOr(null, ['picks', Meteor.userId(), Math.abs(index - 1)], bowl);
+
+		if (R.equals(newScore, opponentScore)){
 			swal('TIE', 'Game cannot be recorded as a tie', 'warning');
+			e.currentTarget.value = oldScore;
 			return;
 		}
-		var obj = {$set: {}};
-		obj.$set[e.currentTarget.dataset.team] = {score: e.currentTarget.value};
-		Games.update(game._id, obj, function(){
-			inputDep.changed();
+
+		var arr = index == 0 ? [newScore, opponentScore] : [opponentScore, newScore];
+		var obj = R.assocPath(['$set', 'picks.' + Meteor.userId()], arr, {})
+		Router.current().state.set('saving' + bowl.gameId, {class: 'label label-warning', text: 'Saving...'});
+		Bowls.update(bowl._id, obj, function (err, data){
+			if (err){
+				console.log(err);
+				Router.current().state.set('saving' + bowl.gameId, {class: 'label label-danger', text: 'ERROR'});
+			} else {
+				Router.current().state.set('saving' + bowl.gameId, {class: 'label label-success', text: 'Saved'});
+			}
 		});
 	},
 	'keypress .pickInput': function(e){
@@ -37,6 +39,7 @@ Template.pickTable.events({
 			e.preventDefault();
 	},
 	'click .saveScoresBtn': function(){
+		return;
 		var out = [['Bowl Name', 'Team 1', 'Team 2', 'Score 1', 'Score 2', '\n']];
 		var games = Games.find({username: Meteor.user().username}, {sort: {gametime: 1}}).fetch();
 		_.each(games, function (e){
@@ -45,14 +48,3 @@ Template.pickTable.events({
 		saveAs(new Blob(out, { type: 'text/csv;charset=utf-8;'}), Meteor.user().username + '-scores.csv');
 	}
 });
-
-Template.pickTable.rendered = function(){
-	var arr = Router.current().data().games.fetch();
-	_.each(arr, function (game){
-		if (_.isNumber(game.team1.score))
-			$('#team1'+game.gameId).val(game.team1.score)
-		if (_.isNumber(game.team2.score))
-			$('#team2'+game.gameId).val(game.team2.score)
-	});
-	inputDep.changed();
-}

@@ -1,15 +1,5 @@
 <template name="editGame">
-	{{#each game}}
-	{{# autoForm collection="Games" id="updateGameForm" doc=this type="update"}}
-		<fieldset>
-		{{> afQuickField name='name'}}
-		{{> afQuickField name='gametime' type='datetime-local'}}
-		{{> afQuickField name='location'}}
-		{{> afQuickField name='team1'}}
-		{{> afQuickField name='team2'}}
-		{{> afQuickField name='playoff'}}
-		</fieldset>
-		<button type="submit" class="btn btn-primary">Update</button>
-	{{/autoForm}}
+	{{#each this}}
+		<h1>{{name}}</h1>
 	{{/each}}
 </template>

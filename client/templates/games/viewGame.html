@@ -1,31 +1,31 @@
 <template name="viewGame">
-	{{#each master}}
+	{{#each this}}
 	<div class="row text-center">
-		<h1>{{actual.name}} Bowl</h1>
-		<h2>{{actual.status}}</h2>
+		<h1>{{name}} Bowl</h1>
+		<h2>{{status}}</h2>
 		<div class="col-xs-4"></div>
 		<div class="col-xs-4">
 			<table class="table table-bordered">
 				<tbody>
 					<tr>
-						<td style="min-width: 100px;">{{team1.name}}</td>
+						<td style="min-width: 100px;">{{teams.[0].name}}</td>
 						<th>vs</th>
-						<td style="min-width: 100px;">{{team2.name}}</td>
+						<td style="min-width: 100px;">{{teams.[1].name}}</td>
 					</tr>
 					<tr>
-						<td>{{team1.score}}</td>
+						<td>{{teams.[0].score}}</td>
 						<th>Actual Score</th>
-						<td>{{team2.score}}</td>
+						<td>{{teams.[1].score}}</td>
 					</tr>
 					<tr>
-						<td>{{avgScore gameId 1}}</td>
+						<td>{{avgScore 0}}</td>
 						<th>Average Score</th>
-						<td>{{avgScore gameId 2}}</td>
+						<td>{{avgScore 1}}</td>
 					</tr>
 					<tr>
-						<td>{{pickCount gameId 1}}</td>
+						<td>{{pickCount 0}}</td>
 						<th>Picks</th>
-						<td>{{pickCount gameId 2}}</td>
+						<td>{{pickCount 1}}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -33,11 +33,10 @@
 		<div class="col-xs-4"></div>
 	</div>
 	{{#if isInRole 'admin'}}
-		<div class="text-center">
-			<a href="https://app.compose.io/ecwyne-com/mongo/college-football-playoff/collections/games/documents/s:{{_id}}" class="btn btn-primary" target="_blank">Compose.io</a>
-		</div>
-		{{/if}}
-	{{/each}}
+	<div class="text-center">
+		<a href="https://app.compose.io/ecwyne-com/mongo/college-football-playoff/collections/games/documents/s:{{_id}}" class="btn btn-primary" target="_blank">Compose.io</a>
+	</div>
+	{{/if}}
 	<div class="row">
 		<div class="col-xs-6">
 			<table class="table table-bordered table-hover">
@@ -51,11 +50,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					{{#each picks}}
-					{{#if $gt team1.score team2.score}}
+					{{#each toPairs picks}}
+					{{#if $gt this.[1].[0] this.[1].[1]}}
 					<tr class="{{winningClass username}}">
 						<td>{{score}}</td>
-						<td>{{team1.score}} - {{team2.score}}</td>
+						<td>{{teams.[0].score}} - {{teams.[1].score}}</td>
 						<td>{{pointsFrom1st username}}</td>
 						<td>{{getRank username}}</td>
 						<td>{{username}}</td>
@@ -77,14 +76,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					{{#each picks}}
-					{{#if $gt team2.score team1.score}}
+					{{#each toPairs picks}}
+					{{#if $gt this.[1].[1] this.[1].[0]}}
 					<tr class="{{winningClass username}}">
-						<td>{{username}}</td>
+						<td>{{getUsername this.[0]}}</td>
 						<td>{{getRank username}}</td>
-						<td>{{pointsFrom1st username}}</td>
-						<td>{{team1.score}} - {{team2.score}}</td>
-						<td>{{score}}</td>
+						<td>{{getRankProp this.[0] 'fromFirst'}}</td>
+						<td>{{this.[1].[0]}} - {{this.[1].[1]}}</td>
+						<td>{{scoreFor .. this.[0]}}</td>
 					</tr>
 					{{/if}}
 					{{/each}}
@@ -93,5 +92,5 @@
 		</div>
 		
 	</div>
-
+	{{/each}}
 </template>
