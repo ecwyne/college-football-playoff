@@ -39,11 +39,10 @@ Template.pickTable.events({
 			e.preventDefault();
 	},
 	'click .saveScoresBtn': function(){
-		return;
 		var out = [['Bowl Name', 'Team 1', 'Team 2', 'Score 1', 'Score 2', '\n']];
-		var games = Games.find({username: Meteor.user().username}, {sort: {gametime: 1}}).fetch();
+		var games = Bowls.find({}, {sort: {date: 1}}).fetch();
 		_.each(games, function (e){
-			out.push([e.actual().name, e.actual().team1.name, e.actual().team2.name, e.team1.score, e.team2.score, '\n']);
+			out.push([e.name, e.teams[0].name, e.teams[1].name, R.pathOr(0, ['picks', Meteor.userId(), 0], e), R.pathOr(0, ['picks', Meteor.userId(), 1], e), '\n']);
 		});
 		saveAs(new Blob(out, { type: 'text/csv;charset=utf-8;'}), Meteor.user().username + '-scores.csv');
 	}

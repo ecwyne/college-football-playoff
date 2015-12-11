@@ -21,7 +21,7 @@
 				<th></th>
 				<th>Score</th>
 				<th>Team Name</th>
-				<th class="hidden-xs hidden-sm">Save</th>
+				<th class="hidden-xs hidden-sm">Saved</th>
 				{{#if isInRole 'admin'}}
 				<th class="hidden-xs hidden-sm">Edit</th>
 				{{/if}}
@@ -32,7 +32,9 @@
 			{{#if $eq playoff ../bool}}
 			<tr class="text-center">
 				{{#if isInRole 'admin'}}
-				<td class="hidden-xs hidden-sm"><a href="/game/{{gameId}}" tabindex="-1">{{gameId}}</a></td>
+				<td class="hidden-xs hidden-sm">
+					<a href="http://espn.go.com/college-football/game?gameId={{gameId}}" target="_blank">ESPN</a>
+				</td>
 				{{/if}}
 				<td class="hidden-xs hidden-sm"><a href="/game/{{gameId}}" tabindex="-1">{{name}}</a></td>
 				<td class="hidden-xs hidden-sm">{{formatDate date 'M/D/YY h:mm A' true}}<br/>{{location}}</td>
