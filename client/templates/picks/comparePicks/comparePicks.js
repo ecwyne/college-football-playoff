@@ -13,6 +13,7 @@ Template.comparePicks.helpers({
 		return R.gt.apply(R, this.picks[get('compare1')]) == R.gt.apply(R, this.picks[get('compare2')]) ? '' : 'info';
 	},
 	winnerName: function(id){
+		if (!allNumbers(R.pathOr(['nope'], ['picks', id], this))) return '';
 		return R.gt.apply(R, this.picks[id]) ? this.teams[0].name : this.teams[1].name;
 	},
 	correctWinnerClass: function(id){
@@ -24,3 +25,5 @@ Template.comparePicks.helpers({
 function get(key){
 	return Router.current().state.get(key);
 }
+
+var allNumbers = R.all(R.is(Number))

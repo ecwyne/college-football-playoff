@@ -23,6 +23,6 @@ Template.navbar.events({
 Template.navbar.helpers({
 	activePage: function(name){
 		if (Router.current())
-			return _.contains(name.split(','), Router.current().options.route.handler.name) ? 'active' : '';
+			return _.contains(name.split(','), Router.current().route.getName()) ? 'active' : '';
 	}
 });

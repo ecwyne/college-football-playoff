@@ -4,8 +4,10 @@
 		<thead>
 			<tr>
 				<th>Username</th>
+				<th>Name</th>
 				<th>Email</th>
-				<th>Complete</th>
+				<th>Completed</th>
+				<th>Done</th>
 				<th>Paid</th>
 			</tr>
 		</thead>
@@ -13,13 +15,21 @@
 			{{#each users}}
 			<tr>
 				<td>{{username}}</td>
+				<td>{{>editableSpan collection="Meteor.users" doc=this field="profile.name"}}</td>
 				<td>{{profile.email}}</td>
 				<td>{{completeCount _id}}</td>
 				<td>
-					{{#if profile.paid}}
-					<span style="cursor: pointer; color: green" class="glyphicon glyphicon-check"></span>
+					{{#if profile.done}}
+					<span style="cursor: pointer; color: green" class="glyphicon glyphicon-check" data-field="done"></span>
 					{{else}}
-					<span style="cursor: pointer; color: red" class="glyphicon glyphicon-unchecked"></span>
+					<span style="cursor: pointer; color: red" class="glyphicon glyphicon-unchecked" data-field="done"></span>
+					{{/if}}
+				</td>
+				<td>
+					{{#if profile.paid}}
+					<span style="cursor: pointer; color: green" class="glyphicon glyphicon-check" data-field="paid"></span>
+					{{else}}
+					<span style="cursor: pointer; color: red" class="glyphicon glyphicon-unchecked" data-field="paid"></span>
 					{{/if}}
 				</td>
 			</tr>

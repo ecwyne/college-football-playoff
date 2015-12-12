@@ -33,3 +33,11 @@ Template.registerHelper('scoreFor', function (bowl, id){
 Template.registerHelper('getRankProp', function (id, prop){
 	return R.path(['rank', prop], Meteor.users.findOne(id));
 });
+
+Template.registerHelper('incompletePicks', function (){
+	return Bowls.find().count() - R.pipe(
+		R.map(R.pathOr(['nope'],['picks', Meteor.userId()])),
+		R.filter(R.all(R.is(Number))),
+		R.length
+	)(Bowls.find().fetch());
+});

@@ -9,7 +9,8 @@ Template.users.helpers({
 });
 
 Template.users.events({
-	'click .glyphicon': function (){
-		Meteor.users.update(this._id, {$set: {'profile.paid': !this.profile.paid}});
+	'click .glyphicon': function (e){
+		var {field} = e.currentTarget.dataset;
+		Meteor.users.update(this._id, R.assocPath(['$set', 'profile.' + field], !this.profile[field], {}))
 	}
 });

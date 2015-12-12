@@ -38,12 +38,17 @@ var arr = [
 	['400852739', 'Tax Slayer', 'Jacksonville, FL', '1/2/2016 12:00 PM', 'Penn State', '', 'Georgia', ''],
 	['400852740', 'Liberty', 'Memphis, TN', '1/2/2016 3:20 PM', 'Kansas State', '', 'Arkansas', ''],
 	['400852741', 'Alamo', 'San Antonio, TX', '1/2/2016 6:45 PM', 'Oregon', '15', 'TCU', '11'],
-	['400852742', 'Cactus', 'Phoenix, AZ', '1/2/2016 10:45 PM', 'West Virginia', '', 'Arizona State', '']
+	['400852742', 'Cactus', 'Phoenix, AZ', '1/2/2016 10:45 PM', 'West Virginia', '', 'Arizona State', ''],
+
+	['400852743', 'National Championship', 'Glendale, AZ', '1/11/2016 5:30 PM', 'Alabama', '2', 'Clemson', '1', true],
+	['400852743', 'National Championship', 'Glendale, AZ', '1/11/2016 5:30 PM', 'Michigan State', '3', 'Clemson', '1', true],
+	['400852743', 'National Championship', 'Glendale, AZ', '1/11/2016 5:30 PM', 'Oklahoma', '4', 'Alabama', '2', true],
+	['400852743', 'National Championship', 'Glendale, AZ', '1/11/2016 5:30 PM', 'Oklahoma', '4', 'Michigan State', '3', true]
 ]
 
 
 
-function Bowl(gameId, name, location, date, name1, rank1, name2, rank2){
+function Bowl(gameId, name, location, date, name1, rank1, name2, rank2, playoff){
 	return {
 		name: name,
 		teams: [
@@ -54,7 +59,7 @@ function Bowl(gameId, name, location, date, name1, rank1, name2, rank2){
 		date: moment(date, 'MM/DD/YYYY h:mm A').toDate(),
 		location: location,
 		status: '',
-		playoff: false,
+		playoff: !!playoff,
 		started: false,
 		finished: false,
 		picks: {}
