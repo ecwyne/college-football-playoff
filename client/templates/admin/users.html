@@ -3,6 +3,7 @@
 	<table class="table table-condensed table-bordered text-center table-hover">
 		<thead>
 			<tr>
+				<th>Compose</th>
 				<th>Username</th>
 				<th>Name</th>
 				<th>Email</th>
@@ -14,6 +15,11 @@
 		<tbody>
 			{{#each users}}
 			<tr>
+				<td>
+					<a href="https://app.compose.io/grade-potential-tutoring/deployments/gpdata/mongodb/databases/cfp/collections/users/documents/%22{{_id}}%22" target="_blank">
+						<span class="glyphicon glyphicon-cloud"></span>
+					</a>
+				</td>
 				<td>{{username}}</td>
 				<td>{{>editableSpan collection="Meteor.users" doc=this field="profile.name"}}</td>
 				<td>{{profile.email}}</td>
