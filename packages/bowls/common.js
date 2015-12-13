@@ -32,7 +32,7 @@ function Bowl(obj){
 Bowl.prototype.isLive = function (){return this.started && !this.finished}
 
 Bowl.prototype.scoreFor = function (id){
-	//if (!this.started) return 0;
+	if (!this.started) return 0;
 	let actual = R.map(R.prop('score'),this.teams);
 	let picks = R.path(['picks', id], this);
 	let correct = !R.equals.apply(R, actual) && R.gt.apply(R, actual) !== R.gt.apply(R, picks) ? 30 : 0;

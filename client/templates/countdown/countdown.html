@@ -1,8 +1,10 @@
 <template name="countdown">
+	{{#if currentUser}}
 	<div class="alert alert-warning alert-dismissible text-center" role="alert">
 		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 		You will not be able to add/edit scores after December 19th at Midnight. That's {{fromNow}} You still have <strong>{{incompletePicks}}</strong> picks to make.
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 	</div>
+	{{/if}}
 </template>

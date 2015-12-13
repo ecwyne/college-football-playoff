@@ -1,5 +1,5 @@
 var arr = [
-	['400852668', 'Gildan New Mexico', 'Albuquerque, NM', '12/19/2015 2:00 PM', 'Arizona', '', 'New Mexico', ''],
+	['400852668', 'New Mexico', 'Albuquerque, NM', '12/19/2015 2:00 PM', 'Arizona', '', 'New Mexico', ''],
 	['400852684', 'Las Vegas', 'Las Vegas, NV', '12/19/2015 3:30 PM', 'BYU', '', 'Utah', '22'],
 	['400852685', 'Camellia', 'Montgomery, AL', '12/19/2015 5:30 PM', 'Ohio', '', 'Appalachian State', ''],
 	['400852683', 'Cure', 'Orlando, FL', '12/19/2015 7:00 PM', 'San Jose State', '', 'Georgia state', ''],

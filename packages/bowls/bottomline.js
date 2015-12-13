@@ -7,8 +7,7 @@ function updateGames(){
 					started: game.started,
 					finished: game.finished,
 					'teams.0.score': game.team1.score,
-					'teams.1.score': game.team2.score,
-					date: game.date
+					'teams.1.score': game.team2.score
 				}})
 			});
 			updateRanks();
@@ -18,6 +17,9 @@ function updateGames(){
 
 function updateRanks(){
 	var totals = {};
+	Meteor.users.find({'profile.done': true}).forEach(function (user){
+		totals[user._id] = 0;
+	});
 	Bowls.find().forEach(function (bowl){
 		for (id in bowl.picks){
 			var userLens = R.lensProp(id);
@@ -25,7 +27,7 @@ function updateRanks(){
 			totals = R.ifElse(
 			  R.has(id),
 			  R.over(R.lensProp(id), R.add(score)),
-			  R.assoc(id, score)
+			  R.always(totals)
 			)(totals);
 		}
 	});

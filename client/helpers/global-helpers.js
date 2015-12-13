@@ -41,3 +41,7 @@ Template.registerHelper('incompletePicks', function (){
 		R.length
 	)(Bowls.find().fetch());
 });
+
+Template.registerHelper('pastDeadline', function(){
+	return (new Date()) > (new Date(Meteor.settings.cutoff));
+});
