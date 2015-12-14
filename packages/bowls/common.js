@@ -39,6 +39,10 @@ Bowl.prototype.scoreFor = function (id){
 	return correct + (sum(diff(actual, picks)) || -50);
 }
 
+Bowl.prototype.picksFor = function (id, index){
+	return R.path(['picks', id, index], this);
+}
+
 Bowl.prototype.set = function (key, val){
 	return Bowls.update(this._id, {$set: R.assoc(key, val, {})});
 }

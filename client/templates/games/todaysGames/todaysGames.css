@@ -1,0 +1,21 @@
+.bowlCardContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: center;
+}
+
+.bowlCard {
+	min-width: 15em;
+	padding: 10px;
+	border: 1px solid #AAA;
+	font-size: 1.5em;
+
+	background:#FFF;
+	box-shadow: 10px 10px 5px #888888;
+	border-bottom:3px solid #BBB;
+	overflow:hidden;
+	margin-bottom: 10px;
+}

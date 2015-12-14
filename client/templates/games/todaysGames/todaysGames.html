@@ -1,35 +1,37 @@
 <template name="todaysGames">
-	<h1>Today's Games</h1>
-	<table class="table table-hover table-bordered">
-		<thead>
-			<tr>
-				<th>Bowl Name</th>
-				<th>Status</th>
-				<th>Score</th>
-			</tr>
-		</thead>
-		<tbody>
-			{{#each this}}
-			<tr>
-				<td><a href="/game/{{gameId}}">{{name}}</a></td>
-				<td>
-					{{#if started}}
-						{{#if finished}}
-							<span class="label label-info" style="font-size: 18px;">Final</span>
-						{{else}}
-							<span class="label label-success" style="font-size: 18px;">Live</span>
-						{{/if}}
-					{{else}}
-						{{formatDate date 'hh:mm a' true}}
-					{{/if}}
-				</td>
-				<td>
-					{{#if started}}
-						{{teams.[0].score}} - {{teams.[1].score}}
-					{{/if}}
-				</td>
-			</tr>
-			{{/each}}
-		</tbody>
-	</table>
+	<div class="text-center">
+		<h1>Today's Games</h1>
+	</div>
+	<div class="bowlCardContainer">
+		{{#each this}}
+		{{>bowlCard}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="bowlCard">
+	<div class="bowlCard text-center">
+		<a href="/game/{{gameId}}"><h2>{{name}}</h2></a>
+		<p>
+			{{#if started}}
+				{{#if finished}}
+					<span class="label label-info" style="font-size: 18px;">Final</span>
+				{{else}}
+					<span class="label label-success" style="font-size: 18px;">Live</span>
+				{{/if}}
+			{{else}}
+				{{formatDate date 'h:mm a' true}}
+			{{/if}}
+		</p>
+		<p>{{status}}</p>
+		<p><strong>{{teams.[0].name}}</strong> vs <strong>{{teams.[1].name}}</strong></p>
+		<p>
+			{{#if started}}
+				{{teams.[0].score}} - {{teams.[1].score}}
+			{{/if}}
+		</p>
+		<hr>
+		<p>My Prediction: {{picksFor currentUser._id 0}} - {{picksFor currentUser._id 1}}</p>
+		<p>Points: {{this.scoreFor currentUser._id}}</p>
+	</div>
 </template>
