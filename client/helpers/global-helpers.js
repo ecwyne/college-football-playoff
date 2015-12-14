@@ -45,3 +45,7 @@ Template.registerHelper('incompletePicks', function (){
 Template.registerHelper('pastDeadline', function(){
 	return (new Date()) > (new Date(Meteor.settings.cutoff));
 });
+
+Template.registerHelper('getUser', function (id){
+	return Meteor.users.findOne(id);
+});

@@ -51,15 +51,19 @@
 				</thead>
 				<tbody>
 					{{#each toPairs picks}}
-					{{#if $gt this.[1].[0] this.[1].[1]}}
+					{{#let user=(getUser this.[0]) score=this.[1]}}
+					{{#if user.profile.done}}
+					{{#if $gt score.[0] score.[1]}}
 					<tr class="{{winningClass this.[0]}}">
 						<td>{{scoreFor .. this.[0]}}</td>
-						<td>{{this.[1].[0]}} - {{this.[1].[1]}}</td>
-						<td>{{getRankProp this.[0] 'fromFirst'}}</td>
-						<td>{{getRankProp this.[0] 'rank'}}</td>
-						<td>{{getUsername this.[0]}}</td>
+						<td>{{score.[0]}} - {{score.[1]}}</td>
+						<td>{{user.rank.fromFirst}}</td>
+						<td>{{user.rank.rank}}</td>
+						<td>{{user.username}}</td>
 					</tr>
 					{{/if}}
+					{{/if}}
+					{{/let}}
 					{{/each}}
 				</tbody>
 			</table>
@@ -77,15 +81,19 @@
 				</thead>
 				<tbody>
 					{{#each toPairs picks}}
-					{{#if $gt this.[1].[1] this.[1].[0]}}
+					{{#let user=(getUser this.[0]) score=this.[1]}}
+					{{#if user.profile.done}}
+					{{#if $gt score.[1] score.[0]}}
 					<tr class="{{winningClass this.[0]}}">
-						<td>{{getUsername this.[0]}}</td>
-						<td>{{getRankProp this.[0] 'rank'}}</td>
-						<td>{{getRankProp this.[0] 'fromFirst'}}</td>
-						<td>{{this.[1].[0]}} - {{this.[1].[1]}}</td>
+						<td>{{user.username}}</td>
+						<td>{{user.rank.rank}}</td>
+						<td>{{user.rank.fromFirst}}</td>
+						<td>{{score.[0]}} - {{score.[1]}}</td>
 						<td>{{scoreFor .. this.[0]}}</td>
 					</tr>
 					{{/if}}
+					{{/if}}
+					{{/let}}
 					{{/each}}
 				</tbody>
 			</table>

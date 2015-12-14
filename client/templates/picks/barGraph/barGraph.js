@@ -10,7 +10,7 @@ Template.barGraph.helpers({
                 text: 'Points from First'
             },
             xAxis: {
-                categories: R.map(R.prop('username'), Meteor.users.find().fetch()),
+                categories: R.map(R.prop('username'), Meteor.users.find({'rank.fromFirst': {$exists: true}}).fetch()),
                 labels: {
                     rotation: -45
                 }
@@ -24,7 +24,7 @@ Template.barGraph.helpers({
             series: [{
                 type: 'column',
                 name: 'Points from First',
-                data: R.map(e => [e.username, e.rank.fromFirst], Meteor.users.find().fetch()),
+                data: R.map(e => [e.username, e.rank.fromFirst], Meteor.users.find({'rank.fromFirst': {$exists: true}}).fetch()),
                 dataLabels: {
                     enabled: true
                 }
