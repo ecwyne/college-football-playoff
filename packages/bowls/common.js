@@ -46,3 +46,8 @@ Bowl.prototype.picksFor = function (id, index){
 Bowl.prototype.set = function (key, val){
 	return Bowls.update(this._id, {$set: R.assoc(key, val, {})});
 }
+
+Router.onBeforeAction(function (){
+	Meteor.subscribe('incomplete-counts');
+	this.next();
+});
