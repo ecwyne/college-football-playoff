@@ -23,7 +23,8 @@ Template.registerHelper('toPairs', function (obj){
 });
 
 Template.registerHelper('getUsername', function (id){
-	return R.prop('username', Meteor.users.findOne(id))
+	var u = Meteor.users.findOne(id);
+	return R.path(['profile', 'name'], u) || R.prop('username', u);
 });
 
 Template.registerHelper('scoreFor', function (bowl, id){

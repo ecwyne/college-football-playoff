@@ -6,7 +6,7 @@
 				<th>
 					<select name="compare1" id="compare1" class="select2">
 						{{#each users}}
-						<option value="{{_id}}">{{rank.rank}}. {{username}}</option>
+						<option value="{{_id}}">{{rank.rank}}. {{profile.name}}</option>
 						{{/each}}
 					</select>
 				</th>
@@ -14,7 +14,7 @@
 				<th>
 					<select name="compare2" id="compare2" class="select2">
 						{{#each users}}
-						<option value="{{_id}}">{{rank.rank}}. {{username}}</option>
+						<option value="{{_id}}">{{rank.rank}}. {{profile.name}}</option>
 						{{/each}}
 					</select>
 				</th>

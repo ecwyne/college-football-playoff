@@ -59,7 +59,7 @@
 						<td>{{score.[0]}} - {{score.[1]}}</td>
 						<td>{{user.rank.fromFirst}}</td>
 						<td>{{user.rank.rank}}</td>
-						<td>{{user.username}}</td>
+						<td>{{getUsername user._id}}</td>
 					</tr>
 					{{/if}}
 					{{/if}}
@@ -85,7 +85,7 @@
 					{{#if user.profile.done}}
 					{{#if $gt score.[1] score.[0]}}
 					<tr class="{{winningClass this.[0]}}">
-						<td>{{user.username}}</td>
+						<td>{{getUsername user._id}}</td>
 						<td>{{user.rank.rank}}</td>
 						<td>{{user.rank.fromFirst}}</td>
 						<td>{{score.[0]}} - {{score.[1]}}</td>

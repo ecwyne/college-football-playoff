@@ -39,9 +39,13 @@ function updateRanks(){
 			fromFirst: val - min
 		}
 	}, totals)))
-	var rank = 1;
-	arr = R.map((e) => R.assoc('rank', rank++)(e), arr);
-
+	var rank = 0;
+	//arr = R.map((e) => R.assoc('rank', rank++)(e), arr);
+	arr = arr.map(function (e, i, arr){
+		rank++;
+		e.rank = rank - R.length(R.filter(R.propEq('score', e.score), R.slice(0, i, arr)));
+		return e;
+	});
 	arr.forEach(function (user){
 		Meteor.users.update(user.id, {$set: {rank: R.dissoc('id', user)}});
 	});
