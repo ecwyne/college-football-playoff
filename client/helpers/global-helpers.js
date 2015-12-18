@@ -40,8 +40,8 @@ Template.registerHelper('incompletePicks', function (){
 		R.map(R.pathOr(['nope'],['picks', Meteor.userId()])),
 		R.filter(R.all(R.is(Number))),
 		R.length
-	)(Bowls.find().fetch());
-});
+		)(Bowls.find().fetch());
+	});
 
 Template.registerHelper('pastDeadline', function(){
 	return (new Date()) > (new Date(Meteor.settings.cutoff));
@@ -50,3 +50,19 @@ Template.registerHelper('pastDeadline', function(){
 Template.registerHelper('getUser', function (id){
 	return Meteor.users.findOne(id);
 });
+
+Template.registerHelper('completeCount', function (id){
+	return R.pipe(
+		R.map(R.pathOr(['nope'],['picks', id])),
+		R.filter(R.all(R.is(Number))),
+		R.length)(Bowls.find().fetch());
+});
+
+Template.registerHelper('missingPicks', function (id){
+	var pipe = R.pipe(
+		R.filter((e) => R.complement(R.all(R.is(Number)))(e.picks[id] || ['none'])),
+		R.map(R.prop('name')),
+		R.join(',\n'));
+
+	return pipe(Bowls.find().fetch());
+})

@@ -13,6 +13,24 @@
 			{{else}}
 				{{> login}}
 			{{/if}}
+			<div class="col-xs-6 col-xs-offset-3">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Picks Made</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#each users}}
+						<tr>
+							<td>{{profile.name}}</td>
+							<td title="{{missingPicks _id}}">{{completeCount _id}}</td>
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </template>
