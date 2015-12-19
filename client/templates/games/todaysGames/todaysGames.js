@@ -5,7 +5,7 @@ Template.bowlCard.helpers({
 			let picks = R.path(['picks', Meteor.userId()], this);
 			let correct = R.gt.apply(R, actual) == R.gt.apply(R, picks);
 			if (!R.equals.apply(R, actual)){
-				return correct ? 'lightgreen' : 'lightred';
+				return correct ? 'lightgreen' : 'lightpink';
 			}
 		}
 	},
