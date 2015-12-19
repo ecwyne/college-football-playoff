@@ -21,7 +21,7 @@
 </template>
 
 <template name="bowlCard">
-	<div class="bowlCard text-center">
+	<div class="bowlCard text-center" style="background: {{bowlCardColor}}">
 		<a href="/game/{{gameId}}"><h2>{{name}}</h2></a>
 		<p>
 			{{#if started}}
@@ -43,6 +43,6 @@
 		</p>
 		<hr>
 		<p>My Prediction: {{picksFor currentUser._id 0}} - {{picksFor currentUser._id 1}}</p>
-		<p>Points: {{this.scoreFor currentUser._id}}</p>
+		<p>Points: {{this.scoreFor currentUser._id}} (#{{bowlCardRank}} this game)</p>
 	</div>
 </template>
