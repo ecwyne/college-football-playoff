@@ -43,6 +43,8 @@
 		</p>
 		<hr>
 		<p>My Prediction: {{picksFor currentUser._id 0}} - {{picksFor currentUser._id 1}}</p>
+		{{#if started}}
 		<p>Points: {{this.scoreFor currentUser._id}} (#{{bowlCardRank}} this game)</p>
+		{{/if}}
 	</div>
 </template>
