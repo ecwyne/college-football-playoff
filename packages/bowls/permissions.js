@@ -4,6 +4,12 @@ Bowls.allow({
 	}
 });
 
+Bowls.allow({
+	update: function (userId, doc, fieldNames, modifier){
+		return Roles.userIsInRole(userId, 'admin');
+	}
+});
+
 Bowls.deny({
 	insert: R.T,
 	remove: R.T
@@ -17,6 +23,6 @@ Bowls.deny({
 
 Bowls.deny({
 	update: function(){
-		return (new Date()) > (new Date(Meteor.settings.cutoff));
+		return (new Date()) > (new Date(Meteor.settings.public.cutoff));
 	}
 });

@@ -1,8 +1,8 @@
 Template.comparePicks.rendered = function(){
-	Router.current().state.setDefault('compare1', Meteor.user()._id);
-	Router.current().state.setDefault('compare2', Meteor.users.findOne({'profile.done': true}, {sort: {'rank.rank': 1}})._id);
+	Session.setDefault('compare1', Meteor.user()._id);
+	Session.setDefault('compare2', Meteor.users.findOne({'profile.done': true}, {sort: {'rank.rank': 1}})._id);
 	$('.select2').select2({width: '250px'}).on('change', function (e){
-		Router.current().state.set(e.currentTarget.id, e.target.value);
+		Session.set(e.currentTarget.id, e.target.value);
 	});
 	$('#compare1').select2('val', get('compare1'));
 	$('#compare2').select2('val', get('compare2'));
@@ -23,7 +23,7 @@ Template.comparePicks.helpers({
 });
 
 function get(key){
-	return Router.current().state.get(key);
+	return Session.get(key);
 }
 
 var allNumbers = R.all(R.is(Number))

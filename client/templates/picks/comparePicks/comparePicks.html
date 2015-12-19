@@ -23,9 +23,9 @@
 		<tbody>
 			{{#each bowls}}
 			<tr class="{{compareClass this}}">
-				<td><span style="font-size: 20px" class="label {{correctWinnerClass (getStateVar 'compare1')}}">{{winnerName (getStateVar 'compare1')}}</span></td>
+				<td><span style="font-size: 20px" class="label {{correctWinnerClass (getSessionVar 'compare1')}}">{{winnerName (getSessionVar 'compare1')}}</span></td>
 				<td><a href="/game/{{gameId}}">{{name}}</a><br/>{{formatDate date true}}</td>
-				<td><span style="font-size: 20px" class="label {{correctWinnerClass (getStateVar 'compare2')}}">{{winnerName (getStateVar 'compare2')}}</span></td>
+				<td><span style="font-size: 20px" class="label {{correctWinnerClass (getSessionVar 'compare2')}}">{{winnerName (getSessionVar 'compare2')}}</span></td>
 			</tr>
 			{{/each}}
 		</tbody>

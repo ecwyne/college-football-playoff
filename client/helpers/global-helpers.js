@@ -18,6 +18,11 @@ Template.registerHelper('getStateVar', function (arg){
 	return Router.current().state.get(key);
 });
 
+Template.registerHelper('getSessionVar', function (arg){
+	var key = R.join.apply(R, ['', R.filter(R.is(String,), _.toArray(arguments))]);
+	return Session.get(key);
+});
+
 Template.registerHelper('toPairs', function (obj){
 	return R.toPairs(obj);
 });
@@ -44,7 +49,7 @@ Template.registerHelper('incompletePicks', function (){
 	});
 
 Template.registerHelper('pastDeadline', function(){
-	return (new Date()) > (new Date(Meteor.settings.cutoff));
+	return (new Date()) > (new Date(Meteor.settings.public.cutoff));
 });
 
 Template.registerHelper('getUser', function (id){
