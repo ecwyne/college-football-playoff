@@ -14,7 +14,8 @@ Template.bowlCard.helpers({
 		let myScore = bowl.scoreFor(Meteor.userId());
 		let allScores = Meteor.users.find({'profile.done': true}).map(function (e){
 			return bowl.scoreFor(e._id)
-		}).sort();
+		}).sort(function (a, b){return a - b});
+		console.log(allScores);
 		return allScores.indexOf(myScore) + 1;
 	}
 });
