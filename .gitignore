@@ -1,4 +1,5 @@
 launch.sh
 ngrok.sh
 settings.json
+node_modules
 mup
