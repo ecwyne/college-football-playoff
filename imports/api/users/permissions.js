@@ -1,6 +1,4 @@
-Meteor.publish(null, function (){
-	return Meteor.users.find({}, {fields: {profile: 1, rank: 1, username: 1}})
-});
+import {Meteor} from 'meteor/meteor';
 
 Meteor.users.allow({
 	update: function(userId, doc){

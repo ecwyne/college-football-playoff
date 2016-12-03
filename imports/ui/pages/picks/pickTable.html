@@ -49,11 +49,11 @@
 				<td>{{formatDate date 'M/D/YY h:mm A' true}}<br/>{{location}}</td>
 				<td>{{#if teams.[0].rank}}#{{teams.[0].rank}} {{/if}}{{teams.[0].name}}<br/>{{teams.[0].record}}</td>
 				<td style="max-width: 75px;">
-					<input id="team1{{gameId}}" type="text" data-index="0" value="{{myPicks 0}}" class="form-control text-center pickInput" disabled="true">
+					<input id="team1{{gameId}}" type="text" data-index="0" value="{{myPicks 0}}" class="form-control text-center pickInput">
 				</td>
 				<td>vs.</td>
 				<td style="max-width: 75px;">
-					<input id="team2{{gameId}}" type="text" data-index="1" value="{{myPicks 1}}" class="form-control text-center pickInput" disabled="true">
+					<input id="team2{{gameId}}" type="text" data-index="1" value="{{myPicks 1}}" class="form-control text-center pickInput">
 				</td>
 				<td>{{#if teams.[1].rank}}#{{teams.[1].rank}} {{/if}}{{teams.[1].name}}<br/>{{teams.[1].record}}</td>
 				<td>
@@ -63,7 +63,7 @@
 				</td>
 				{{#if isInRole 'admin'}}
 				<td>
-					<a href="/edit-game/{{gameId}}" tabindex="-1">Edit</a>
+					<a href="https://app.compose.io/grade-potential-tutoring/deployments/gpdata/mongodb/databases/cfp/collections/bowls/documents/%22{{_id}}%22" target="_blank" tabindex="-1">Edit</a>
 				</td>
 				{{/if}}
 			</tr>
@@ -84,7 +84,7 @@
 							{{#if teams.[0].rank}}#{{teams.[0].rank}} {{/if}}{{teams.[0].name}}
 						</div>
 						<div class="col-xs-7">
-							<input id="team1{{gameId}}" type="text" data-index="0" value="{{myPicks 0}}" class="form-control text-center pickInput" disabled="true">
+							<input id="team1{{gameId}}" type="text" data-index="0" value="{{myPicks 0}}" class="form-control text-center pickInput">
 						</div>
 					</div>
 					<div class="row">
@@ -92,7 +92,7 @@
 							{{#if teams.[1].rank}}#{{teams.[1].rank}} {{/if}}{{teams.[1].name}}
 						</div>
 						<div class="col-xs-7">
-							<input id="team2{{gameId}}" type="text" data-index="1" value="{{myPicks 1}}" class="form-control text-center pickInput" disabled="true">
+							<input id="team2{{gameId}}" type="text" data-index="1" value="{{myPicks 1}}" class="form-control text-center pickInput">
 						</div>
 					</div> 
 				</td>

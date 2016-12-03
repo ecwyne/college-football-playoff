@@ -5,6 +5,8 @@ import moment from 'moment';
 
 var dateDep = new Tracker.Dependency();
 
+import './countdown.html';
+
 Template.registerHelper('fromNow', () => {
 	dateDep.depend();
 	const {cutoff} = Meteor.settings.public;
