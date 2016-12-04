@@ -4,7 +4,7 @@ import {Router} from 'meteor/iron:router';
 import R from 'ramda';
 import swal from 'sweetalert';
 import _ from 'underscore';
-import {Bowls} from 'meteor/bowls';
+import {Bowls} from '/imports/api/bowls/Bowls.js';
 import {saveAs} from 'meteor/pfafman:filesaver';
 
 import './pickTable.html';

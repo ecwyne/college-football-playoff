@@ -1,7 +1,7 @@
 import {Meteor} from 'meteor/meteor';
 import {Template} from 'meteor/templating';
 import R from 'ramda';
-import {Bowls} from 'meteor/bowls';
+import {Bowls} from '/imports/api/bowls/Bowls.js';
 
 import './users.html';
 

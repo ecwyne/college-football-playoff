@@ -3,7 +3,7 @@ import {Tracker} from 'meteor/tracker';
 import {Template} from 'meteor/templating';
 import {Router} from 'meteor/iron:router';
 import {Session} from 'meteor/session';
-import {Bowls} from 'meteor/bowls';
+import {Bowls} from '/imports/api/bowls/Bowls.js';
 import _ from 'underscore';
 import moment from 'moment';
 import R from 'ramda';

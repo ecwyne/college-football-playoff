@@ -1,11 +1,16 @@
+import {Meteor} from 'meteor/meteor';
+import {Bowls} from './Bowls.js';
+import {Roles} from 'meteor/alanning:roles';
+import R from 'ramda';
+
 Bowls.allow({
-	update: function (userId, doc, fieldNames, modifier){
+	update: function(userId, doc, fieldNames, modifier){
 		return R.equals(['picks.' + userId], R.keys(R.prop('$set', modifier)));
 	}
 });
 
 Bowls.allow({
-	update: function (userId, doc, fieldNames, modifier){
+	update: function(userId, doc, fieldNames, modifier){
 		return Roles.userIsInRole(userId, 'admin');
 	}
 });
@@ -16,7 +21,7 @@ Bowls.deny({
 });
 
 Bowls.deny({
-	update: function (userId, doc, fieldNames, modifier){
+	update: function(userId, doc, fieldNames, modifier){
 		return !R.equals(fieldNames, ['picks']);
 	}
 });

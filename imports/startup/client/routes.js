@@ -1,9 +1,14 @@
 import {Router} from 'meteor/iron:router';
 import {Meteor} from 'meteor/meteor';
-import {Bowls} from 'meteor/bowls';
+import {Bowls} from '/imports/api/bowls/Bowls.js';
 import moment from 'moment';
 
 Router.configure({layoutTemplate: 'layoutTemplate'});
+
+Router.onBeforeAction(function(){
+	Meteor.subscribe('incomplete-counts');
+	this.next();
+});
 
 // Rules
 Router.route('/', {

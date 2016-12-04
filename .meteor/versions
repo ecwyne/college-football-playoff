@@ -11,7 +11,6 @@ blaze@2.2.0
 blaze-html-templates@1.0.5
 blaze-tools@1.0.10
 boilerplate-generator@1.0.11
-bowls@0.0.1
 caching-compiler@1.1.9
 caching-html-compiler@1.0.7
 callback-hook@1.0.10
@@ -27,7 +26,6 @@ deps@1.0.12
 diff-sequence@1.0.7
 ecmascript@0.6.1
 ecmascript-runtime@0.3.15
-ecwyne:bottomline@0.0.3
 ejson@1.0.13
 email@1.1.18
 fastclick@1.0.13
@@ -47,7 +45,6 @@ iron:middleware-stack@1.1.0
 iron:router@1.0.13
 iron:url@1.0.11
 jquery@1.11.10
-kevohagan:sweetalert@1.0.0
 launch-screen@1.1.0
 livedata@1.0.18
 localstorage@1.0.12
@@ -63,7 +60,6 @@ mobile-experience@1.0.4
 mobile-status-bar@1.0.13
 modules@0.7.7
 modules-runtime@0.7.7
-momentjs:moment@2.17.0
 mongo@1.1.14
 mongo-id@1.0.6
 natestrauser:connection-banner@0.5.2
@@ -76,7 +72,6 @@ ordered-dict@1.0.9
 pfafman:filesaver@0.2.3_2
 promise@0.8.8
 raix:handlebar-helpers@0.2.5
-ramda:ramda@0.19.0
 random@1.0.10
 rate-limit@1.0.6
 reactive-dict@1.1.8

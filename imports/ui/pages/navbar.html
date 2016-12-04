@@ -23,12 +23,17 @@
 					</ul>
 				</li>
 				{{#if currentUser}}
-				<li class="{{activePage 'myPicks'}}"><a href="/my-picks">My Picks <span class="badge">{{#if incompletePicks}}{{incompletePicks}}{{/if}}</span></a></li>
-				{{#if $or pastDeadline (isInRole 'admin')}}
-				<li class="{{activePage 'comparePicks'}}"><a href="/compare-picks">Compare Picks</a></li>
-				<li class="{{activePage 'todaysGames'}}"><a href="/todays-games">Today's Games</a></li>
-				<li class="{{activePage 'barGraph'}}"><a href="/bar-graph">Bar Graph</a></li>
-				{{/if}}
+					<li class="{{activePage 'myPicks'}}">
+						<a href="/my-picks">
+							My Picks 
+							{{#if incompletePicks}}<span class="badge">{{incompletePicks}}</span>{{/if}}
+						</a>
+					</li>
+					{{#if $or pastDeadline (isInRole 'admin')}}
+					<li class="{{activePage 'comparePicks'}}"><a href="/compare-picks">Compare Picks</a></li>
+					<li class="{{activePage 'todaysGames'}}"><a href="/todays-games">Today's Games</a></li>
+					<li class="{{activePage 'barGraph'}}"><a href="/bar-graph">Bar Graph</a></li>
+					{{/if}}
 				{{/if}}
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

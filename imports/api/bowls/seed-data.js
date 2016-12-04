@@ -1,4 +1,7 @@
-var arr = [
+import {Bowls} from './Bowls.js';
+import moment from 'moment';
+
+const seedArr = [
 	['400852668', 'New Mexico', 'Albuquerque, NM', '12/19/2015 2:00 PM', 'Arizona', '', 'New Mexico', ''],
 	['400852684', 'Las Vegas', 'Las Vegas, NV', '12/19/2015 3:30 PM', 'BYU', '', 'Utah', '22'],
 	['400852685', 'Camellia', 'Montgomery, AL', '12/19/2015 5:30 PM', 'Ohio', '', 'Appalachian State', ''],
@@ -44,30 +47,28 @@ var arr = [
 	['400852743', 'National Championship', 'Glendale, AZ', '1/11/2016 5:30 PM', 'Michigan State', '3', 'Clemson', '1', true],
 	['400852743', 'National Championship', 'Glendale, AZ', '1/11/2016 5:30 PM', 'Oklahoma', '4', 'Alabama', '2', true],
 	['400852743', 'National Championship', 'Glendale, AZ', '1/11/2016 5:30 PM', 'Oklahoma', '4', 'Michigan State', '3', true]
-]
-
-
+];
 
 function Bowl(gameId, name, location, date, name1, rank1, name2, rank2, playoff){
 	return {
-		name: name,
+		name,
 		teams: [
 			{name: name1, rank: rank1, score: null},
 			{name: name2, rank: rank2, score: null}
 		],
 		gameId: gameId.toString(),
 		date: moment(date, 'MM/DD/YYYY h:mm A').toDate(),
-		location: location,
+		location,
 		status: '',
-		playoff: !!playoff,
+		playoff: Boolean(playoff),
 		started: false,
 		finished: false,
 		picks: {}
-	}
+	};
 }
 
 if (Bowls.find().count() == 0){
-	arr.forEach(function (bowl){
+	seedArr.forEach(bowl => {
 		Bowls.insert(Bowl.apply(Bowl,bowl));
 	});
 }

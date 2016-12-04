@@ -3,17 +3,14 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-ecwyne:bottomline
 mizzao:bootstrap-3
 pfafman:filesaver
 iron:router
 accounts-password@1.3.3
 natestrauser:connection-banner
-kevohagan:sweetalert@1.0.0
 yogiben:pretty-email
 natestrauser:x-editable-bootstrap
 alanning:roles
-underscore@1.0.10
 raix:handlebar-helpers
 sacha:spin
 natestrauser:select2@4.0.0_1
@@ -32,10 +29,7 @@ random@1.0.10
 ejson@1.0.13
 spacebars
 check@1.2.4
-bowls
 ecmascript@0.6.1
-ramda:ramda
-momentjs:moment
 standard-minifier-css
 standard-minifier-js
 shell-server
