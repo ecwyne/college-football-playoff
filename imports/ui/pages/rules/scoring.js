@@ -19,10 +19,10 @@ Template.scoringRules.helpers({
 	},
 	pointWrong: function(){
 		diffDef.depend();
-		var a1 = $('#a1').val();
-		var b1 = $('#b1').val();
-		var a2 = $('#a2').val();
-		var b2 = $('#b2').val();
+		var a1 = Number($('#a1').val());
+		var b1 = Number($('#b1').val());
+		var a2 = Number($('#a2').val());
+		var b2 = Number($('#b2').val());
 		if (a1 == b1 || a2 == b2){
 			return 'Cannot result in tie';
 		}

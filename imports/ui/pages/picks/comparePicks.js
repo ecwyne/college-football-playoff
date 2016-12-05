@@ -8,7 +8,7 @@ import './comparePicks.html';
 
 Template.comparePicks.onRendered(() => {
 	Session.setDefault('compare1', Meteor.userId());
-	Session.setDefault('compare2', Meteor.users.findOne({'profile.done': true}, {sort: {'rank.rank': 1}})._id);
+	Session.setDefault('compare2', R.propOr('', '_id', Meteor.users.findOne({'profile.done': true}, {sort: {'rank.rank': 1}})));
 	const c1 = $('#compare1').select2({width: '250px'});
 	const c2 = $('#compare2').select2({width: '250px'});
 	c1.val(get('compare1')).trigger('change');
