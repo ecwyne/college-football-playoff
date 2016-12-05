@@ -6,6 +6,8 @@ Meteor.publish(null, () => Meteor.users.find({}, {fields: {profile: 1, rank: 1, 
 Meteor.publish('my-picks', function(){
 	if (this.userId){
 		return Bowls.find({hide: {$ne: true}});
+	} else {
+		return Bowls.find({doIExist: true});
 	}
 });
 
