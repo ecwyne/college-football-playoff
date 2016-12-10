@@ -6,13 +6,13 @@ import R from 'ramda';
 export const updateGames = () => {
 	Bottomline.ncaaf(Meteor.bindEnvironment((err, data) => {
 		if (!err){
-			data.forEach(game => {
-				Bowls.update({gameId: game.gameId}, {$set: {
-					status: game.status,
-					started: game.started,
-					finished: game.finished,
-					'teams.0.score': game.team1.score,
-					'teams.1.score': game.team2.score
+			data.forEach(({gameId, status, started, finished, team1, team2}) => {
+				Bowls.update({gameId}, {$set: {
+					status,
+					started,
+					finished,
+					'teams.0.score': team1.score,
+					'teams.1.score': team2.score
 				}});
 			});
 			updateRanks();
