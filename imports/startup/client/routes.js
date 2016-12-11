@@ -135,7 +135,7 @@ Router.route('/game/:gameId', {
 	name: 'viewGame',
 	template: 'viewGame',
 	waitOn: function(){
-		return Meteor.subscribe('bowl-by-id', this.params.gameId);
+		return Meteor.subscribe('all-bowls');
 	},
 	data: function(){
 		return Bowls.find({$or: [{gameId: this.params.gameId}, {_id: this.params.gameId}]});

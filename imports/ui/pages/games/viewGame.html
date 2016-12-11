@@ -1,9 +1,13 @@
 <template name="viewGame">
 	{{#each this}}
 	<div class="row text-center">
-		<h1>{{name}} Bowl</h1>
+			<h1>{{name}} Bowl</h1>
 		<h2>{{status}}</h2>
-		<div class="col-xs-4"></div>
+		<div class="col-xs-4">
+			{{#with neighborBowl -1}}
+			<a class="btn btn-primary" title="{{name}} Bowl" href="/game/{{gameId}}"><span class="glyphicon glyphicon-arrow-left"></span></a>
+			{{/with}}
+		</div>
 		<div class="col-xs-4">
 			<table class="table table-bordered">
 				<tbody>
@@ -30,7 +34,11 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="col-xs-4"></div>
+		<div class="col-xs-4">
+			{{#with neighborBowl 1}}
+			<a class="btn btn-primary" title="{{name}} Bowl" href="/game/{{gameId}}"><span class="glyphicon glyphicon-arrow-right"></span></a>
+			{{/with}}
+		</div>
 	</div>
 	{{#if isInRole 'admin'}}
 	<div class="text-center">
