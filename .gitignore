@@ -1,5 +1,6 @@
 .DS_Store
 launch.sh
+launchOld.sh
 ngrok.sh
 settings.json
 node_modules

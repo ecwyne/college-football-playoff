@@ -124,6 +124,12 @@ Router.route('/bar-graph', {
 	template: 'barGraph'
 });
 
+Router.route('/rolling-totals', {
+	name: 'rollingTotals',
+	template: 'rollingTotals',
+	waitOn: () => Meteor.subscribe('all-bowls')
+});
+
 // Games
 Router.route('/game/:gameId', {
 	name: 'viewGame',

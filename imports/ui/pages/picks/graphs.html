@@ -1,0 +1,12 @@
+<template name="barGraph">
+	{{> highchartsHelper chartId="barGraph" chartWidth="100%" chartHeight="100%" chartObject=barGraphData}}
+</template>
+
+<template name="rollingTotals">
+	<div class="text-center">
+		<button class="btn btn-primary metricBtn {{activeMetric 'Total Score'}}">Total Score</button>
+		<button class="btn btn-primary metricBtn {{activeMetric 'Rank'}}">Rank</button>
+		<button class="btn btn-primary metricBtn {{activeMetric 'Points Away From First Place'}}">Points Away From First Place</button>
+	</div>
+	{{> highchartsHelper chartId="rollingTotals" chartWidth="100%" chartHeight="700px" chartObject=rollingTotalsData}}
+</template>

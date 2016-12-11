@@ -35,7 +35,20 @@ export const updateRanks = () => {
 	return scoreCaluclations;
 };
 
+export const rollingTotals = () => {
+	const doneUsers = Meteor.users.find({'profile.done': true}).map(R.prop('_id'));
+	const scoreObjects = Bowls.find({finished: true}, {sort: {date: 1, name: 1}}).map(bowl => {
+		const actual = bowl.teams.map(R.prop('score'));
+		return R.map(picks => calculateScore(picks, actual), bowl.picks);
+	});
+	const runningTotals = scoreObjects.map((e, i, arr) => {
+		const subArr = R.take(i + 1, arr);
+		return R.pick(doneUsers, R.reduce(R.mergeWith(R.add), {}, subArr));
+	});
+	return runningTotals;
+};
+
 Meteor.setInterval(updateGames, 1000 * 60 * 2);
 updateGames();
 
-Meteor.methods({updateRanks});
+Meteor.methods({updateRanks, rollingTotals});

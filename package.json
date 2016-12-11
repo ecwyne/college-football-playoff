@@ -1,0 +1,29 @@
+{
+  "name": "college-football-playoff",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "babel-runtime": "^6.18.0",
+    "bcrypt": "^0.8.7",
+    "bottomline": "^0.0.3",
+    "moment": "^2.17.0",
+    "ramda": "^0.22.1",
+    "sweetalert": "^1.1.3",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ecwyne/college-football-playoff.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ecwyne/college-football-playoff/issues"
+  },
+  "homepage": "https://github.com/ecwyne/college-football-playoff#readme"
+}
