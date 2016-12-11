@@ -36,5 +36,8 @@ Template.comparePicks.helpers({
 			return 'label-default';
 		}
 		return gt(R.map(R.prop('score'), this.teams)) == gt(this.picks[id]) ? 'label-success' : 'label-danger';
+	},
+	scoreFor: function(id){
+		return this.scoreFor(id);
 	}
 });

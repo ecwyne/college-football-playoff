@@ -1,5 +1,4 @@
 <template name="comparePicks">
-	
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
@@ -23,9 +22,29 @@
 		<tbody>
 			{{#each bowls}}
 			<tr class="{{compareClass this}}">
-				<td><span style="font-size: 20px" class="label {{correctWinnerClass (getSessionVar 'compare1')}}">{{winnerName (getSessionVar 'compare1')}}</span></td>
-				<td><a href="/game/{{gameId}}">{{name}}</a><br/>{{formatDate date true}}</td>
-				<td><span style="font-size: 20px" class="label {{correctWinnerClass (getSessionVar 'compare2')}}">{{winnerName (getSessionVar 'compare2')}}</span></td>
+				<td>
+					<span style="font-size: 20px" class="label {{correctWinnerClass (getSessionVar 'compare1')}}">
+						{{winnerName (getSessionVar 'compare1')}}
+					</span>
+					{{#if scoreFor (getSessionVar 'compare1')}}
+					<p></p>
+					<p>This Game: {{scoreFor (getSessionVar 'compare1')}} points</p>
+					{{/if}}
+				</td>
+				<td>
+					<a href="/game/{{gameId}}">{{name}}</a>
+					<br/>
+					{{formatDate date true}}
+				</td>
+				<td>
+					<span style="font-size: 20px" class="label {{correctWinnerClass (getSessionVar 'compare2')}}">
+						{{winnerName (getSessionVar 'compare2')}}
+					</span>
+					{{#if scoreFor (getSessionVar 'compare2')}}
+					<p></p>
+					<p>This Game: {{scoreFor (getSessionVar 'compare2')}} points</p>
+					{{/if}}
+				</td>
 			</tr>
 			{{/each}}
 		</tbody>
