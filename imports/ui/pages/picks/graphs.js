@@ -2,6 +2,7 @@ import {Meteor} from 'meteor/meteor';
 import {Template} from 'meteor/templating';
 import {Bowls} from '/imports/api/bowls/Bowls.js';
 import {Router} from 'meteor/iron:router';
+import {Session} from 'meteor/session';
 import R from 'ramda';
 
 import './graphs.html';
@@ -37,6 +38,7 @@ Template.barGraph.helpers({
 });
 
 Template.rollingTotals.onCreated(() => {
+	Session.setDefault('chartUserFilter', Meteor.users.find({$or: [{_id: Meteor.userId()}, {'rank.rank': {$lte: 5}}]}).map(R.prop('_id')));
 	Router.current().state.setDefault('metric', 'Points Away From First Place');
 	Meteor.call('rollingTotals', (err, data) => {
 		Router.current().state.set('rollingTotalsData', data);
@@ -71,7 +73,10 @@ Template.rollingTotals.helpers({
 		const series = R.sortBy(R.prop('name'), Meteor.users.find({'profile.done': true}).map(({_id, profile}) => {
 			return {
 				name: profile.name,
-				data: data.map(R.prop(_id))
+				data: data.map(R.prop(_id)),
+				visible: Session.get('chartUserFilter').includes(_id),
+				marker: {enabled: false},
+				id: _id
 			};
 		}));
 		return {
@@ -95,7 +100,21 @@ Template.rollingTotals.helpers({
 				verticalAlign: 'middle',
 				borderWidth: 0
 			},
-			series
+			series,
+			plotOptions: {
+				line: {
+					events: {
+						legendItemClick: function(){
+							const current = Session.get('chartUserFilter');
+							if (!this.visible){
+								Session.set('chartUserFilter', [...current, this.userOptions.id]);
+							} else {
+								Session.set('chartUserFilter', current.filter(id => id != this.userOptions.id));
+							}
+						}
+					}
+				}
+			}
 		};
 	}
 });
