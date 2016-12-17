@@ -70,9 +70,10 @@ Template.rollingTotals.helpers({
 		const mapper = R.propOr(R.identity, Router.current().state.get('metric'), mappers);
 		const data = R.map(mapper, Router.current().state.get('rollingTotalsData') || []);
 		const categories = Bowls.find({}, {sort: {date: 1, name: 1}}).map(R.prop('name'));
-		const series = R.sortBy(R.prop('name'), Meteor.users.find({'profile.done': true}).map(({_id, profile}) => {
+		const series = R.sortBy(R.prop('name'), Meteor.users.find({'profile.done': true}).map(({_id, profile, rank}) => {
+			const n = R.propOr(false, 'rank', rank);
 			return {
-				name: profile.name,
+				name: `${profile.name} ${n ? '(' + n + ')' : ''}`,
 				data: data.map(R.prop(_id)),
 				visible: Session.get('chartUserFilter').includes(_id),
 				marker: {enabled: false},
