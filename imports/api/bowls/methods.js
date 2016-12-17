@@ -28,7 +28,7 @@ export const updateRanks = () => {
 	});
 	const totalScores = R.pick(doneUsers, R.reduce(R.mergeWith(R.add), {}, scoreObjects));
 	const min = R.reduce(R.min, Infinity, R.values(totalScores));
-	const sortedScores = R.values(totalScores).sort();
+	const sortedScores = R.values(totalScores).sort((a, b) => a - b);
 	const mapCalcs = (score, id) => ({id, score, fromFirst: score - min, rank: sortedScores.indexOf(score) + 1});
 	const scoreCaluclations = R.sortBy(R.prop('score'), R.values(R.mapObjIndexed(mapCalcs, totalScores)));
 	scoreCaluclations.forEach(user => Meteor.users.update(user.id, {$set: {rank: R.dissoc('id', user)}}));
