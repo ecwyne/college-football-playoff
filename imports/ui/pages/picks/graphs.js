@@ -18,7 +18,7 @@ Template.barGraph.helpers({
 			text: 'Points from First'
 		},
 		xAxis: {
-			categories: R.map(R.path(['profile', 'name']), Meteor.users.find({'profile.done': true, 'rank.fromFirst': {$exists: true}}).fetch()),
+			categories: R.map(R.path(['profile', 'name']), Meteor.users.find({'profile.done': true, 'rank.fromFirst': {$exists: true}}, {sort: {'profile.name': 1}}).fetch()),
 			labels: {
 				rotation: -45
 			}
@@ -29,7 +29,7 @@ Template.barGraph.helpers({
 		series: [{
 			type: 'column',
 			name: 'Points from First',
-			data: R.map(e => [e.profile.name, e.rank.fromFirst], Meteor.users.find({'profile.done': true, 'rank.fromFirst': {$exists: true}}).fetch()),
+			data: R.map(e => [e.profile.name, e.rank.fromFirst], Meteor.users.find({'profile.done': true, 'rank.fromFirst': {$exists: true}}, {sort: {'profile.name': 1}}).fetch()),
 			dataLabels: {
 				enabled: true
 			}
@@ -38,7 +38,8 @@ Template.barGraph.helpers({
 });
 
 Template.rollingTotals.onCreated(() => {
-	Session.setDefault('chartUserFilter', Meteor.users.find({$or: [{_id: Meteor.userId()}, {'rank.rank': {$lte: 5}}]}).map(R.prop('_id')));
+	const myRank = R.pathOr(0, ['rank', 'rank'], Meteor.user());
+	Session.setDefault('chartUserFilter', Meteor.users.find({$or: [{'rank.rank': {$gte: myRank - 2, $lte: myRank + 2}}, {'rank.rank': {$lte: 3}}]}).map(R.prop('_id')));
 	Router.current().state.setDefault('metric', 'Points Away From First Place');
 	Meteor.call('rollingTotals', (err, data) => {
 		Router.current().state.set('rollingTotalsData', data);
